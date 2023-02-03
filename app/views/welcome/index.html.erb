@@ -1,3 +1,6 @@
+<head>
+<%= javascript_include_tag 'application' %>
+</head>
 <div class="index">
     <span>
         <font size="50">TI DIAMO IL BENVENUTO!</font><br/><br/><br/>
@@ -11,7 +14,6 @@
     </span>
     <br/><br/>
     <div class="buttons">
-        
         <%= link_to "ACCEDI", new_user_session_path, class:"button" %>
         <%= link_to "REGISTRATI",  new_user_registration_path, class:"button" %>
     </div>
