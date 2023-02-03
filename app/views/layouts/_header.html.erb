@@ -10,7 +10,7 @@
             <div class="tab"><%= link_to "CARICA", root_path, class:"tab_span" %></div>
             <div class="tab"><%= link_to "CHE", root_path, class:"tab_span" %></div>
             <div class="tab"><%= link_to "FIGATA", root_path, class:"tab_span" %></div>
-            <div class="tab"><%= link_to "LOGOUT", destroy_user_session_path, method: :delete, class:"tab_span" %></div>
+            <div class="tab"><%= button_to "LOGOUT", destroy_user_session_path, method: :delete, class:"tab_span" %></div>
         </ul>
     <% else %>
         <ul class="tabs">   
