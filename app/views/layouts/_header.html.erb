@@ -6,11 +6,11 @@
 
     <% if current_user %>
         <ul class="tabs">   
-            <div class="tab"><%= link_to "HOME", root_path, class:"tab_span" %></div>
+            <div class="tab"><%= link_to "BACHECA", dashboard_path, class:"tab_span" %></div>
             <div class="tab"><%= link_to "CARICA", root_path, class:"tab_span" %></div>
-            <div class="tab"><%= link_to "CHE", root_path, class:"tab_span" %></div>
-            <div class="tab"><%= link_to "FIGATA", root_path, class:"tab_span" %></div>
-            <div class="tab"><%= button_to "LOGOUT", destroy_user_session_path, method: :delete, class:"tab_span" %></div>
+            <div class="tab"><%= link_to "CLASSIFICA", root_path, class:"tab_span" %></div>
+            <div class="tab"><%= link_to "ACCOUNT", root_path, class:"tab_span" %></div>
+            <div class="tab"><%= link_to "CALENDARIO", root_path, class:"tab_span" %></div>
         </ul>
     <% else %>
         <ul class="tabs">   
