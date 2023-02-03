@@ -30,7 +30,7 @@
                 <div class="voce_es">
                     <div class="titolo_ves">Up</div>
                     <div class="scadenza_ves">
-                        <%= link_to image_tag('pencil.png', size: "20x20"), dashboard_path %>
+                        <%= link_to image_tag('pencil.png', size: "20x20"), dashboardutente_path %>
                         <%= link_to image_tag('download.png', size: "20x20"), root_path %>
                     </div>
                 </div>
@@ -38,3 +38,4 @@
         </div>
     </div>
 </div>
+<%= button_to "LOGOUT",  destroy_session_path(:user), :method => :delete, class:"button" %>

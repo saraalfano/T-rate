@@ -63,3 +63,53 @@ hr.titolo_sezione {
     margin-right:5px;
 
 }
+
+.elenco_preferiti {
+    margin-top: 10px;
+    border-color: black;
+    border-style: solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;  
+    margin-bottom: 50px;
+}
+
+.nome_ep {
+    width: 100%;
+}
+
+span.nome_ep {
+    font-size: 150%;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.voce_ep {
+    width: 95%;
+    height: 60px;
+    border-color: black;
+    border-style: solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 150%;
+    margin-bottom: 10px;
+}
+
+.titolo_vep {
+    width: 380px;
+    line-break: normal;
+    line-height: 80%;
+    margin-left: 5px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+
+}
+
+.rating_vep {
+    margin-right:5px;
+
+}

@@ -1,6 +1,3 @@
-<head>
-<%= javascript_include_tag 'application' %>
-</head>
 <div class="index">
     <span>
         <font size="100%">TI DIAMO IL BENVENUTO!</font><br/><br/><br/>
@@ -16,5 +13,8 @@
     <div class="buttons">
         <%= link_to "ACCEDI", new_user_session_path, class:"button" %>
         <%= link_to "REGISTRATI",  new_user_registration_path, class:"button" %>
+        <% if current_user %>
+            <%= button_to "LOGOUT",  destroy_session_path(:user), :method => :delete, class:"button" %>
+        <% end %>
     </div>
 </div>
