@@ -1,7 +1,40 @@
-<div class="index">
-    <br/><br/>
-    <div class="buttons">
-        <%= link_to "ACCEDI", new_user_session_path, class:"button" %>
-        <%= link_to "REGISTRATI",  new_user_registration_path, class:"button" %>
+<div class="index-dashboard">
+    <div class="sezione">
+        <div class="titolo_sezione">
+            <span class="titolo_sezione">TRADUTTORI PREFERITI</span>
+            <hr class="titolo_sezione">
+            <div class="elenco_preferiti">
+                <div class="nome_ep">
+                    <span class="nome_ep">Numa Pompilio</span>
+                    <%= link_to image_tag('download.png', size: "50x50"), root_path %>
+                <div class="voce_es">
+                    <div class="titolo_ves">Friends (S02E10)</div>
+                    <div class="scadenza_ves">
+                        <% for i in 1..10 do %>
+                            <%= image_tag('emptystar.png', size: "20x20") %>
+                        <% end %>
+                        <%= link_to image_tag('download.png', size: "20x20"), dashboardutente_path %>
+                    </div>
+                </div>
+                <div class="voce_es">
+                    <div class="titolo_ves">How I Met Your Father (S01E09)</div>
+                    <div class="scadenza_ves">
+                        <% for i in 1..10 do %>
+                            <%= image_tag('emptystar.png', size: "20x20") %>
+                        <% end %>
+                        <%= link_to image_tag('download.png', size: "20x20"), dashboardutente_path %>
+                    </div>
+                </div>
+                <div class="voce_es">
+                    <div class="titolo_ves">Avatar - La via dell'acqua</div>
+                    <div class="scadenza_ves">
+                        <% for i in 1..10 do %>
+                            <%= image_tag('emptystar.png', size: "20x20") %>
+                        <% end %>
+                        <%= link_to image_tag('download.png', size: "20x20"), dashboardutente_path %>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
