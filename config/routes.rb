@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   match 'dashboard' => 'dashboard#dashboardtraduttore', :via => :get
   match 'dashboardpm'=> 'dashboard#dashboardpm', :via => :get
   match 'dashboardutente'=> 'dashboard#dashboardutente', :via => :get
-
+  match 'account'   => 'accounts#account',          :via => :get
 
 end

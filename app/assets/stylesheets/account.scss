@@ -1,0 +1,40 @@
+.index-account {
+    width: 80%;
+    height: 80%;
+    margin: auto;
+    border-color: black;
+    border-style: solid;
+    border-top-right-radius: 25%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 100%;
+    align-items:center;
+}
+
+.buttons-account{
+    width: 39%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.buttons-footer-account{
+    width: 100%;
+    display: flex;
+    justify-content:right;
+    align-items:right;
+}
+
+.button-account{
+    width: 90;
+    height: 30px;
+    background-color: white;
+    color: gray;
+    text-decoration: none;
+    font-weight:normal;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-right: 1%;
+}
