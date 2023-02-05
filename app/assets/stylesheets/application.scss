@@ -25,3 +25,14 @@
     height: 100%;
     margin: auto;
 }
+
+.user_pagina {
+    display: flex;
+    align-items: flex-end;
+}
+
+.usermenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

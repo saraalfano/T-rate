@@ -39,8 +39,27 @@
                         <%= link_to image_tag('download.png', size: "20x20"), root_path %>
                     </div>
                 </div>
+                <div class="voce_es">
+                    <div class="titolo_ves">Up</div>
+                    <div class="scadenza_ves">
+                        <% for i in 1..10 do %>
+                            <%= image_tag('emptystar.png', size: "20x20") %>
+                        <% end %>
+                        <%= link_to image_tag('pencil.png', size: "20x20"), dashboardpm_path %>
+                        <%= link_to image_tag('download.png', size: "20x20"), root_path %>
+                    </div>
+                </div>
+                <div class="voce_es">
+                    <div class="titolo_ves">Up</div>
+                    <div class="scadenza_ves">
+                        <% for i in 1..10 do %>
+                            <%= image_tag('emptystar.png', size: "20x20") %>
+                        <% end %>
+                        <%= link_to image_tag('pencil.png', size: "20x20"), dashboardpm_path %>
+                        <%= link_to image_tag('download.png', size: "20x20"), root_path %>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<%= button_to "LOGOUT",  destroy_session_path(:user), :method => :delete, class:"button" %>

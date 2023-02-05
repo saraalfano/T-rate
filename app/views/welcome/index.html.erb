@@ -13,8 +13,5 @@
     <div class="buttons">
         <%= link_to "ACCEDI", new_user_session_path, class:"button" %>
         <%= link_to "REGISTRATI",  new_user_registration_path, class:"button" %>
-        <% if current_user %>
-            <%= button_to "LOGOUT",  destroy_session_path(:user), :method => :delete, class:"button" %>
-        <% end %>
     </div>
 </div>

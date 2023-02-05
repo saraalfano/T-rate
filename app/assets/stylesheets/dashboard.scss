@@ -1,16 +1,23 @@
 .index-dashboard {
     width: 80%;
-    height: 80%;
-    margin: auto;
+    height: 500px;
     border-color: black;
     border-style: solid;
     border-top-right-radius: 25%;
     text-align: left;
     display: flex;
     flex-direction: column;
-    align-items:center;
+    align-items: flex-start;
+    padding-left: 20px;
     font-size: 100%;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
+
+.index-dashboard::-webkit-scrollbar {
+    display: none;
+  }
 
 .sezione {
     width: 70%;
@@ -18,7 +25,6 @@
 }
 
 .titolo_sezione {
-    width: 100%;
     text-align: left;
 }
 

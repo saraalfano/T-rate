@@ -5,17 +5,11 @@
 <div class="logo"><%= image_tag('logo.png', size: "200x200") %></div>
 
     <% if current_user %>
-        <ul class="tabs">   
+        <ul class="tabs">
             <div class="tab"><%= link_to "BACHECA", dashboard_path, class:"tab_span" %></div>
             <div class="tab"><%= link_to "CARICA", root_path, class:"tab_span" %></div>
             <div class="tab"><%= link_to "CLASSIFICA", root_path, class:"tab_span" %></div>
             <div class="tab"><%= link_to "CALENDARIO", root_path, class:"tab_span" %></div>
-            <% if user.image.attached? %>
-                <%= link_to image_tag('logo.png', size: "50x50"), dashboardpm_path %>
-            <% else %>
-                <%= link_to image_tag('default_pic.png', size: "50x50"), dashboardpm_path %>
-            <% end %>
-
         </ul>
     <% else %>
         <ul class="tabs">   
