@@ -1,0 +1,13 @@
+<head>
+<%= javascript_include_tag 'application' %>
+</head>
+<div class="index-account">
+    <br/>
+<iframe src="https://calendar.google.com/calendar/embed?height=400&wkst=1&bgcolor=%23ffffff&ctz=Europe%2FRome&showTitle=0&showNav=0&showDate=0&showTz=0&showCalendars=0&showTabs=0&showPrint=0&src=dHJhdGVwcm9qZWN0QGdtYWlsLmNvbQ&color=%23039BE5" style="border-width:0" width="600" height="400" frameborder="0" scrolling="no"></iframe>
+    <div class="buttons-footer-account" style="width: 100%;">
+        <%= link_to "CAMBIA PASSWORD", new_user_session_path, class:"button-account" %>
+    </div>
+    <div class="buttons-footer-account" style="width: 100%;">
+        <%= link_to "ELIMINA ACCOUNT",  new_user_registration_path, class:"button-account" %>
+    </div>
+</div>

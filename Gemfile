@@ -15,6 +15,12 @@ gem "sqlite3", "~> 1.4"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
+# Use Google API for Google Calendar
+gem 'google-api-client', require: 'google/apis/calendar_v3'
+
+# Use Signet for OAuth implementation
+gem 'signet'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 
