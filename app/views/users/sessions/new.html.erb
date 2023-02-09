@@ -18,6 +18,7 @@
       <br/>
       <div class="actions session_buttons">
         <%= f.submit "LOG IN", class:"button" %>
+        <%= link_to "Sign In with Google", user_google_oauth2_omniauth_authorize_path(:google_oauth2) %>
       </div>
     <% end %>
 

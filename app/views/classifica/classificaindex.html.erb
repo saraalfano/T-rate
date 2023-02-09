@@ -4,11 +4,14 @@
             <div class="voce_classifica">
                 <div class="numero_classifica"><%= index+1 %></div>
                 <div class="nome_classifica">
-                    <% if utente.image.attached? %>
-                        <%= image_tag(utente.image, size: "50x50", class:"profile_pic") %>
+                    <% if utente.provider == 'google_oauth2' && utente.avatar_url %>
+                        <%= image_tag(utente.avatar_url, size: "50x50", class:"profile_pic") %>
+                    <% elsif utente.avatar.attached? %>
+                        <%= image_tag(utente.avatar, size: "50x50", class:"profile_pic") %>
                     <% else %>
                         <%= image_tag('default_pic.png', size: "50x50", class:"profile_pic") %>
                     <% end %>
+
                     <%= button_to utente.username, traduzioni_path, params: {:traduttore => utente.username}, method: :get, class:"classifica-button" %>
                 </div>
                 <div class="voto_classifica"><%= utente.score %></div>

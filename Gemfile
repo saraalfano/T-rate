@@ -15,8 +15,15 @@ gem "sqlite3", "~> 1.4"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
+gem 'image_processing'
+
+gem 'omniauth'
+
 # Use Google API for Google Calendar
-gem 'google-api-client', require: 'google/apis/calendar_v3'
+gem 'google-apis-calendar_v3'
+
+#Use Google API for Google OAuth2
+gem 'omniauth-google-oauth2'
 
 # Use Signet for OAuth implementation
 gem 'signet'

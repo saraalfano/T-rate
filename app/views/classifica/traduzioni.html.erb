@@ -3,8 +3,10 @@
         <div class="classifica_sezione">
             <div class="classifica_nome">
                 <% utente=User.find_by(username: request.query_parameters["traduttore"]) %>
-                <% if utente.image.attached? %>
-                    <%= image_tag(utente.image, size: "40x40", class:"profile_pic") %>
+                <% if utente.provider == 'google_oauth2' && utente.avatar_url %>
+                    <%= image_tag(utente.avatar_url, size: "40x40", class:"profile_pic") %>
+                <% elsif utente.avatar.attached? %>
+                    <%= image_tag(utente.avatar, size: "40x40", class:"profile_pic") %>
                 <% else %>
                     <%= image_tag('default_pic.png', size: "40x40", class:"profile_pic") %>
                 <% end %>

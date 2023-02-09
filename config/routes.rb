@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  resources :translations
 
-  devise_for :users, controllers: {sessions: 'users/sessions', registrations: "users/registrations"}
+  devise_for :users, controllers: {sessions: 'users/sessions', registrations: "users/registrations", omniauth_callbacks: "users/omniauth_callbacks"}
   resources :favorite_users, only: [:create, :destroy]
   resources :ratings, only: [:create, :destroy]
-
+  resources :translations
+  
   devise_scope :user do
     post '/becometranslator' => 'users/registrations#becometranslator', as: :becometranslator
     post '/becomeuser' => 'users/registrations#becomeuser', as: :becomeuser
