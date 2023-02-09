@@ -1,6 +1,7 @@
 <%= form_with(model: translation, class:"upload-form") do |f| %>
   <%= f.text_field :titolo, autofocus: true, autocomplete: "Titolo", placeholder: "Titolo", class: "upload-fieldarea", :required => true %>
-  <%= f.number_field :user_id, id: :translation_user_id, value: current_user.id, type: :hidden %>
+  <%= f.number_field :traduttore_id, id: :translation_traduttore_id, value: current_user.id, type: :hidden %>
+  <%= f.number_field :revisore_id, id: :translation_revisore_id, value: User.find_by(username: 'projman').id, type: :hidden %>
   
   <div class="input-datas">
     <% if request.query_parameters["film"]=="true" %>

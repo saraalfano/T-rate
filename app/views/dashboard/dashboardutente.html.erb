@@ -8,7 +8,7 @@
                         <span class="nome_ep"><%= button_to utente.username, traduzioni_path, params: {:traduttore => utente.username}, method: :get, class:"upload_header_button" %></span>
                         <%= button_to image_tag('fullheart.png', size: "30x30"), favorite_user_path(utente), method: :delete, class:"button_icon" %>
                     </div>
-                    <% utente.translation.order(created_at: :desc).limit(3).each do |traduzione| %>
+                    <% Translation.where(traduttore_id: utente.id).order(created_at: :desc).limit(3).each do |traduzione| %>
                         <div class="voce_ep">
                             <div class="titolo_vep"><%= image_tag('document.png', size: "40x40") %><%= traduzione.titolo%>
                             <% if traduzione.tipo=="serie" %>   

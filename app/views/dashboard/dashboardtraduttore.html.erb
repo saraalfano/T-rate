@@ -18,7 +18,7 @@
         <div class="sezione">
             <div class="titolo_sezione">
                 <span class="titolo_sezione">SVOLTE</span><hr class="titolo_sezione"><div class="elenco_sezione">
-                <% current_user.translation.order(created_at: :desc).each do |traduzione| %>
+                <% Translation.where(traduttore_id: current_user.id).order(created_at: :desc).each do |traduzione| %>
                     <div class="voce_es">
                         <div class="titolo_ves"><%= traduzione.titolo %>
                             <% if traduzione.tipo=="serie" %>   

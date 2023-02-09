@@ -26,7 +26,7 @@
             <% if current_user.ruolo=='Utente' %>
                 <div class="tab"><span class="tab_span">CALENDARIO</span></div>
             <% else %>
-                <div class="tab"><%= link_to "CALENDARIO", root_path, class:"tab_span" %></div>
+                <div class="tab"><%= link_to "CALENDARIO", calendario_path, class:"tab_span" %></div>
             <% end %>
         </ul>
     <% else %>

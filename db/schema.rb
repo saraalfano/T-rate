@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_09_134024) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_08_125543) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -65,11 +65,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_09_134024) do
     t.integer "stagione"
     t.integer "episodio"
     t.integer "revisore_id", null: false
+    t.integer "traduttore_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "traduttore_id"
-    t.index ["revisore_id"], name: "index_translations_on_revisore_id"
-    t.index ["traduttore_id"], name: "index_translations_on_traduttore_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -94,6 +92,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_09_134024) do
   add_foreign_key "favorites", "users"
   add_foreign_key "ratings", "translations"
   add_foreign_key "ratings", "users"
-  add_foreign_key "translations", "users", column: "revisore_id"
-  add_foreign_key "translations", "users", column: "traduttore_id"
 end

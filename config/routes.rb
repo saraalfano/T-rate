@@ -9,7 +9,6 @@ Rails.application.routes.draw do
     post '/becometranslator' => 'users/registrations#becometranslator', as: :becometranslator
     post '/becomeuser' => 'users/registrations#becomeuser', as: :becomeuser
     post '/becomepm' => 'users/registrations#becomepm', as: :becomepm
-    post '/averageupdating' => 'users/registrations#averageupdating', as: :averageupdating
   end
 
   root 'welcome#index'
@@ -21,7 +20,10 @@ Rails.application.routes.draw do
   match 'ratings' => 'rating#create', :via => :get
   match 'translation' => 'translations#destroy', :via => :delete
   match 'traduzioni' => 'classifica#traduzioni', :via => :get
-
-
+  match 'calendario' => 'calendar#redirect', :via => :get
+  get '/redirect',  to:     'calendar#redirect', as: 'redirect'
+  get '/callback',  to:     'calendar#callback', as: 'callback'
+  get '/calendar', to:     'calendar#calendar', as: 'calendar'
+  get '/events/:calendar_id', to: 'calendar#events', as: 'events', calendar_id: /[^\/]+/
 
 end

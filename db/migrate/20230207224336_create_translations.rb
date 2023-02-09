@@ -5,8 +5,8 @@ class CreateTranslations < ActiveRecord::Migration[7.0]
       t.string :tipo
       t.integer :stagione
       t.integer :episodio
-      t.references :user, :revisore, null: false, foreign_key: { to_table: :users }
-      t.references :user, :traduttore, foreign_key: { to_table: :users }
+      t.integer :revisore_id, null: false, foreign_key: { to_table: :users }
+      t.integer :traduttore_id, foreign_key: { to_table: :users }
 
       t.timestamps
     end

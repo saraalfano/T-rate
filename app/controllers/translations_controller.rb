@@ -14,7 +14,7 @@ class TranslationsController < ApplicationController
 
   # GET /translations/new
   def new
-    @translation = current_user.translation.build
+    @translation = current_user.translations.build
   end
 
   # GET /translations/1/edit
@@ -23,7 +23,7 @@ class TranslationsController < ApplicationController
 
   # POST /translations or /translations.json
   def create
-    @translation = current_user.translation.build(translation_params)
+    @translation = current_user.translations.build(translation_params)
 
     respond_to do |format|
       if @translation.save
@@ -57,7 +57,7 @@ class TranslationsController < ApplicationController
   end
 
   def correct_user
-    @translation = current_user.translation.find(params[:id])
+    @translation = Translation.find(params[:id])
     redirect_to root_path if @translation.nil?
   end
 
@@ -75,6 +75,6 @@ class TranslationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def translation_params
-      params.require(:translation).permit(:titolo, :tipo, :stagione, :episodio, :traduttore_id, :tradotto)
+      params.require(:translation).permit(:titolo, :tipo, :stagione, :episodio, :revisore_id, :traduttore_id, :tradotto)
     end
 end

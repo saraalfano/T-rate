@@ -6,7 +6,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one_attached :image
-  has_many :translation
+  has_many :translations, :class_name => "Translation", :foreign_key => "traduttore_id"
+  has_many :translations, :class_name => "Translation", :foreign_key => "revisore_id"
   has_many :ratings
   has_many :favorites
   has_many :favorite_users, through: :favorites, source: :favorited, source_type: 'User'
