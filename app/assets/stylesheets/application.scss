@@ -26,13 +26,18 @@
     margin: auto;
 }
 
-.user_pagina {
-    display: flex;
-    align-items: flex-end;
+.footer {
+    width: 80%;
+    margin: auto;
+    text-align: right;
+}
+.button_icon {
+    border: 0;
+    background-color: transparent;
 }
 
-.usermenu {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.profile_pic {
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
 }

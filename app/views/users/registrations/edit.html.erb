@@ -1,67 +1,60 @@
 <div class="index-account">
+
+    <div class="buttons-footer-account">
+      <%= button_to "CAMBIA PASSWORD", edit_user_password_path, class:"button-footer-account" %>
+      <%= button_to "ELIMINA ACCOUNT", registration_path(resource_name), data: { confirm: "SICURO DI VOLER ELIMINARE L'ACCOUNT?" }, method: :delete, class:"button-footer-account" %>
+    </div>
+
   <div class="edit-account">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <%= render "users/shared/error_messages", resource: resource %>
-        
-        <div class="field">
-          <% if current_user.image.attached? %>
-            <%= image_tag(current_user.image, size: "80x80") %>
-          <% else %>
-              <%= image_tag('default_pic.png', size: "80x80") %>
-          <% end %>
-          <br/>
-          <%= f.file_field :image %>
-        </div>
-
-        <div class="field">
-          <% if current_user.username %>
-            <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
-          <% else %>
-            Username
-          <% end %>
-        </div>
-
-        <div class="field">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-        </div>
-
-        <div class="field">
-          <% if current_user.nome %>
-            <%= f.text_field :nome, autofocus: true, autocomplete: "nome cognome" %>
-          <% else %>
-            Nome Cognome
-          <% end %>
-        </div>
-
-        <br/><br/>
-
-        <b>RUOLO</b>
-        <br/>
-        <div class="field">
-          <% if current_user.ruolo %>
-            <%= f.text_field :ruolo, autofocus: true, autocomplete: "ruolo" %>
-          <% else %>
-            Ruolo
-          <% end %>
-        </div>
-
-        <br/><br/>
-        
-        <div class="buttons-account">
-            <%= button_to "DIVENTA TRADUTTORE", root_path, class:"button" %>
-            <%= f.submit "UPDATE", class:"button" %>
-        </div>
-      </div>
-      <div class="buttons-footer-account">
-          <%= button_to "CAMBIA PASSWORD", edit_user_password_path, class:"button-account" %>
-      </div>
-      <div class="buttons-footer-account">
-          <%= button_to "ELIMINA ACCOUNT", registration_path(resource_name), data: { confirm: "SICURO DI VOLER ELIMINARE L'ACCOUNT?" }, method: :delete, class:"button-account" %>
-      </div>
-
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+              
+      <% if current_user.image.attached? %>
+        <%= image_tag(current_user.image, size: "80x80", class:"profile_pic") %>
+      <% else %>
+          <%= image_tag('default_pic.png', size: "80x80", class:"profile_pic") %>
       <% end %>
-  <% end %>
+
+      <br/>
+      <%= f.file_field :image %>
+
+      <br/><br/>
+      <%= f.text_field :username, autocomplete: "username", placeholder: "Username", class:"field-account" %>
+      <br/><br/>
+      <%= f.email_field :email, autocomplete: "email", class:"field-account" %>
+      <br/><br/>
+      <%= f.text_field :nome, autocomplete: "nome", placeholder: "Nome", class:"field-account" %>
+      <%= f.text_field :cognome, autocomplete: "cognome", placeholder: "Cognome", class:"field-account" %>
+
+      <br/><br/>
+
+      <b>RUOLO:</b>
+      <br/>
+      <%= current_user.ruolo %>
+
+      <br/><br/>
+      <div class="buttons-account">
+        <%= f.submit "UPDATE", class:"button-account" %>
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+    <% end %>
+        <% if current_user.ruolo=="Utente" %>
+          <%= button_to "DIVENTA TRADUTTORE", becometranslator_path(), class:"button-account" %>
+        <% elsif current_user.ruolo=="Traduttore" %>
+          <%= button_to "TORNA A UTENTE", becomeuser_path(), class:"button-account" %>
+          <% if current_user.score.round(1) > 8 %>
+            <%= button_to "DIVENTA PM", becomepm_path(), class:"button-account" %>
+          <% end %>
+        <% elsif current_user.ruolo=="Project Manager" %>
+          <%= button_to "TORNA A UTENTE", becomeuser_path(), class:"button-account" %>
+          <%= button_to "TORNA A TRADUTTORE", becometranslator_path(), class:"button-account" %>
+        <% end %>
+      </div>
+
+      
+  </div>
+
 </div>
+<%= render "users/shared/error_messages", resource: resource %>
 

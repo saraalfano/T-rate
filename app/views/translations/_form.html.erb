@@ -1,0 +1,43 @@
+<%= form_with(model: translation, class:"upload-form") do |f| %>
+  <%= f.text_field :titolo, autofocus: true, autocomplete: "Titolo", placeholder: "Titolo", class: "upload-fieldarea", :required => true %>
+  <%= f.number_field :user_id, id: :translation_user_id, value: current_user.id, type: :hidden %>
+  
+  <div class="input-datas">
+    <% if request.query_parameters["film"]=="true" %>
+      <%= f.text_field :tipo, id: :translation_tipo, value: "film", type: :hidden %>
+    <% else %>
+      <%= f.text_field :tipo, id: :translation_tipo, value: "serie", type: :hidden %>
+      <div class="int-datas">
+        <div class="field-label">S<%= f.number_field :stagione, autocomplete: "stagione", placeholder: 1, class: "upload-intarea", :required => true %></div>
+        <div class="field-label">E<%= f.number_field :episodio, autocomplete: "episodio", placeholder: 1, class: "upload-intarea", :required => true %></div>
+      </div>
+    <% end %>
+
+    <div class="uploading-button">
+      <label for="fileinput">
+        <span>SELEZIONA FILE<br/></span>
+        <span id="fileinput-name" class="fileinput-name"><%= @translation.tradotto.filename %></span>
+      </label>
+      <% if @translation.tradotto.attached? %>
+        <%= f.file_field :tradotto, id:"fileinput", :onchange => "document.getElementById('fileinput-name').textContent=this.value.split('fakepath').pop().slice(1,)" %>
+      <% else %>
+        <%= f.file_field :tradotto, id:"fileinput", :required => true, :onchange => "document.getElementById('fileinput-name').textContent=this.value.split('fakepath').pop().slice(1,)" %>
+      <% end %>
+    </div>
+
+  </div>
+
+  <%= f.submit "UPLOAD", class:"button" %>
+
+  <% if translation.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(translation.errors.count, "error") %> prohibited this translation from being saved:</h2>
+
+      <ul>
+        <% translation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+
+  <% end %>
+<% end %>

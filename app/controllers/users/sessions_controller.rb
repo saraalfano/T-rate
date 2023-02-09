@@ -2,10 +2,6 @@
 
 class Users::SessionsController < Devise::SessionsController
 
-  def after_sign_in_path_for(_resource_or_scope)
-    dashboard_path
-  end
-
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

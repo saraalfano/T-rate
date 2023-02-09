@@ -1,15 +1,33 @@
 <head>
-<%= javascript_include_tag 'application' %>
+<%= stylesheet_link_tag "application", media: "all", "data-turbo-track" => "reload" %>
+<%= javascript_include_tag "application", "data-turbo-track" => "reload" %>
 </head>
 
 <div class="logo"><%= image_tag('logo.png', size: "200x200") %></div>
 
     <% if current_user %>
         <ul class="tabs">
-            <div class="tab"><%= link_to "BACHECA", dashboard_path, class:"tab_span" %></div>
-            <div class="tab"><%= link_to "CARICA", root_path, class:"tab_span" %></div>
-            <div class="tab"><%= link_to "CLASSIFICA", root_path, class:"tab_span" %></div>
-            <div class="tab"><%= link_to "CALENDARIO", root_path, class:"tab_span" %></div>
+            <% if current_user.image.attached? %>
+                <%= link_to image_tag(current_user.image, size: "40x40", class:"profile_pic"), edit_user_registration_path %>
+            <% else %>
+                <%= link_to image_tag('default_pic.png', size: "40x40", class:"profile_pic"), edit_user_registration_path %>
+            <% end %>
+
+            <div class="tab"><%= link_to "BACHECA", root_path, class:"tab_span" %></div>
+
+            <% if current_user.ruolo=='Utente' || current_user.ruolo=='PM' %>
+                <div class="tab"><span class="tab_span">CARICA</span></div>
+            <% else %>
+                <div class="tab"><%= link_to "CARICA", new_translation_path, class:"tab_span" %></div>
+            <% end %>
+
+            <div class="tab"><%= link_to "CLASSIFICA", classifica_path, class:"tab_span" %></div>
+
+            <% if current_user.ruolo=='Utente' %>
+                <div class="tab"><span class="tab_span">CALENDARIO</span></div>
+            <% else %>
+                <div class="tab"><%= link_to "CALENDARIO", root_path, class:"tab_span" %></div>
+            <% end %>
         </ul>
     <% else %>
         <ul class="tabs">   
