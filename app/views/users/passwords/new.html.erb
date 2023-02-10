@@ -1,16 +1,19 @@
-<h2>Forgot your password?</h2>
+<div class="index">
+<h2>Hai dimenticato la tua password?</h2><br/>
+<b>Per recuperarla inserisci qui la tua email e ti manderemo le istruzioni per il reset!</b><br/>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= render "users/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="fields">
+    <b><%= f.label :email %></b>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "fieldarea"  %><br/><br/>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+  <div class="action session_buttons">
+    <%= f.submit "Invia", class:"button" %><br/><br/>
   </div>
 <% end %>
 
-<%= render "users/shared/links" %>
+<div align="center"><%= render "users/shared/links" %></div>
+</div>
