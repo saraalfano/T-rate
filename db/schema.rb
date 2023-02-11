@@ -80,8 +80,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_09_185409) do
     t.datetime "updated_at", null: false
     t.string "username"
     t.string "nome"
-    t.string "ruolo"
-    t.float "score"
+    t.string "cognome"
+    t.string "ruolo", default: "Utente"
+    t.float "score", default: 0.0
     t.string "provider"
     t.string "uid"
     t.string "avatar_url"
