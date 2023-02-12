@@ -3,7 +3,7 @@ class UserMailer < ApplicationMailer
         #@url  = 'http://example.com/login'
         puts "sto inviando aaaaaaaaaaaaaaaaaa"
         puts email
-        mail(to: email, subject: "Benvenuto su Trate!<3")
+        mail(from: "trate@project.com", to: email, subject: "Benvenuto su Trate!<3")
     end
       
 end

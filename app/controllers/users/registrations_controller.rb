@@ -82,7 +82,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   
   #per il welcome mailer
   def mail_sender
-  UserMailer.welcome_email(current_user.email).deliver_now
+  UserMailer.welcome_email(current_user.email).deliver
   puts "AAAAAAAAAAAAAAAAAAAAAH"
   end
 end
