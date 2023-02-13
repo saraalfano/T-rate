@@ -25,21 +25,30 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def update_resource(resource, params)
-    resource.update_without_password(params)
+    if resource.provider == 'google_oauth2'
+        params.delete('current_password')
+        resource.password = params['password']
+      resource.update_without_password(params)
+    else
+      resource.update_without_password(params)
+    end
   end
 
-  def becometranslator()
-    current_user.update_attribute(:ruolo, "Traduttore")
+  def becometranslator
+    @user=User.find(params[:id])
+    @user.update_attribute(:ruolo, "Traduttore")
     redirect_back_or_to root_path
   end
 
-  def becomeuser()
-    current_user.update_attribute(:ruolo, "Utente")
+  def becomeuser
+    @user=User.find(params[:id])
+    @user.update_attribute(:ruolo, "Utente")
     redirect_back_or_to root_path
   end
 
-  def becomepm()
-    current_user.update_attribute(:ruolo, "Project Manager")
+  def becomepm
+    @user=User.find(params[:id])
+    @user.update_attribute(:ruolo, "Project Manager")
     redirect_back_or_to root_path
   end
 
@@ -61,7 +70,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :ruolo])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
   end
 
   # If you have extra params to permit, append them to the sanitizer.

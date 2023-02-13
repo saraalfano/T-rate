@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :favorite_users, only: [:create, :destroy]
   resources :ratings, only: [:create, :destroy]
   resources :translations
+  resources :suggestions
   
   devise_scope :user do
     post '/becometranslator' => 'users/registrations#becometranslator', as: :becometranslator
@@ -12,18 +13,17 @@ Rails.application.routes.draw do
   end
 
   root 'welcome#index'
-
   match 'dashboardtraduttore' => 'dashboard#dashboardtraduttore', :via => :get
   match 'dashboardpm'=> 'dashboard#dashboardpm', :via => :get
   match 'dashboardutente'=> 'dashboard#dashboardutente', :via => :get
   match 'classifica'=> 'classifica#classificaindex', :via => :get
   match 'ratings' => 'rating#create', :via => :get
-  match 'translation' => 'translations#destroy', :via => :delete
+  match 'calendar' => 'translations#index', :via => :get
   match 'traduzioni' => 'classifica#traduzioni', :via => :get
-  match 'calendario' => 'calendar#redirect', :via => :get
-  get '/redirect',  to:     'calendar#redirect', as: 'redirect'
-  get '/callback',  to:     'calendar#callback', as: 'callback'
-  get '/calendar', to:     'calendar#calendar', as: 'calendar'
-  get '/events/:calendar_id', to: 'calendar#events', as: 'events', calendar_id: /[^\/]+/
-
+  match 'gettranslation' => 'translations#gettranslation', :via => :post
+  get '/redirect', to: 'translations#redirect', as: 'redirect'
+  get '/callback', to: 'translations#callback', as: 'callback'
+  get '/translations', to: 'translations#index', as: 'translationnew'
+  # delete '/events/:calendar_id', to: 'calendar#delete_event', as: 'delete_event', calendar_id: /[^\/]+/
+ 
 end

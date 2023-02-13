@@ -273,7 +273,10 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   
-  config.omniauth :google_oauth2, '26374530676-48oseth467s71g0bao7knsq01b8ok2n9.apps.googleusercontent.com', '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',{}
+  config.omniauth :google_oauth2,
+    ENV['GOOGLE_OAUTH_CLIENT_ID'],
+    ENV['GOOGLE_OAUTH_CLIENT_SECRET'],
+    scope: 'email,profile,drive,calendar'
   OmniAuth.config.allowed_request_methods = %i[get]
 
   config.navigational_formats = ['/', :html, :turbo_stream]

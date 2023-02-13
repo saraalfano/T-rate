@@ -12,11 +12,6 @@ class User < ApplicationRecord
   has_many :favorites
   has_many :favorite_users, through: :favorites, source: :favorited, source_type: 'User'
 
-  # def initialize(attributes=nil)
-  #   attr_with_defaults = {:ruolo => "Utente", :score => 0.0}.merge(attributes)
-  #   super(attr_with_defaults)
-  # end
-
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
@@ -24,6 +19,7 @@ class User < ApplicationRecord
       user.nome = auth.info.first_name
       user.cognome = auth.info.last_name
       user.avatar_url = auth.info.image
+      user.google_token = auth.credentials.token
     end
   end
 

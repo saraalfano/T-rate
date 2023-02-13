@@ -19,14 +19,25 @@ gem 'image_processing'
 
 gem 'omniauth'
 
+gem 'google-api-client', require: 'google/apis/calendar_v3'
+
 # Use Google API for Google Calendar
 gem 'google-apis-calendar_v3'
+gem 'google-apis-drive_v3'
 
 #Use Google API for Google OAuth2
 gem 'omniauth-google-oauth2'
 
 # Use Signet for OAuth implementation
 gem 'signet'
+
+gem 'dotenv-rails'
+
+gem 'google-id-token'
+
+gem 'omniauth-rails_csrf_protection'
+
+gem 'httparty'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -90,3 +101,4 @@ group :test do
 end
 
 gem "cssbundling-rails", "~> 1.1"
+gem "omniauth-auth0", "~> 3.1"

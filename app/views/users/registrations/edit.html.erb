@@ -1,7 +1,6 @@
 <div class="index-account">
 
     <div class="buttons-footer-account">
-      <%= button_to "CAMBIA PASSWORD", edit_user_password_path, class:"button-footer-account" %>
       <%= button_to "ELIMINA ACCOUNT", registration_path(resource_name), data: { confirm: "SICURO DI VOLER ELIMINARE L'ACCOUNT?" }, method: :delete, class:"button-footer-account" %>
     </div>
 
@@ -36,21 +35,17 @@
       <br/><br/>
       <div class="buttons-account">
         <%= f.submit "UPDATE", class:"button-account" %>
-
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-        <% end %>
     <% end %>
         <% if current_user.ruolo=="Utente" %>
-          <%= button_to "DIVENTA TRADUTTORE", becometranslator_path(), class:"button-account" %>
+          <%= button_to "DIVENTA TRADUTTORE", {:action => 'becometranslator', :id => current_user.id}, class:"button-account" %>
         <% elsif current_user.ruolo=="Traduttore" %>
-          <%= button_to "TORNA A UTENTE", becomeuser_path(), class:"button-account" %>
+          <%= button_to "TORNA A UTENTE", {:action => 'becomeuser', :id => current_user.id}, class:"button-account" %>
           <% if current_user.score.round(1) > 8 %>
-            <%= button_to "DIVENTA PM", becomepm_path(), class:"button-account" %>
+            <%= button_to "DIVENTA PM", {:action => 'becomepm', :id => current_user.id}, class:"button-account" %>
           <% end %>
         <% elsif current_user.ruolo=="Project Manager" %>
-          <%= button_to "TORNA A UTENTE", becomeuser_path(), class:"button-account" %>
-          <%= button_to "TORNA A TRADUTTORE", becometranslator_path(), class:"button-account" %>
+          <%= button_to "TORNA A UTENTE", {:action => 'becomeuser', :id => current_user.id}, class:"button-account" %>
+          <%= button_to "TORNA A TRADUTTORE", {:action => 'becometranslator', :id => current_user.id}, class:"button-account" %>
         <% end %>
       </div>
 

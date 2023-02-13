@@ -1,7 +1,13 @@
 <%= form_with(model: translation, class:"upload-form") do |f| %>
-  <%= f.text_field :titolo, autofocus: true, autocomplete: "Titolo", placeholder: "Titolo", class: "upload-fieldarea", :required => true %>
-  <%= f.number_field :traduttore_id, id: :translation_traduttore_id, value: current_user.id, type: :hidden %>
-  <%= f.number_field :revisore_id, id: :translation_revisore_id, value: User.find_by(username: 'projman').id, type: :hidden %>
+  <% if request.query_parameters["edit"] == "traduzione" %>
+    <%= f.number_field :traduttore_id, value: current_user.id, type: :hidden %>
+    <%= f.text_field :titolo, autofocus: true, autocomplete: "Titolo", placeholder: "Titolo", class: "upload-fieldarea", :required => true, :readonly => true %>
+    <%= f.date_field :deadline, value: f.object.try(:strftime,"%Y/%m/%d"), required: true, :readonly => true %>
+  <% else %>
+    <%= f.number_field :revisore_id, value: current_user.id, type: :hidden %>
+    <%= f.text_field :titolo, autofocus: true, autocomplete: "Titolo", placeholder: "Titolo", class: "upload-fieldarea", :required => true %>
+    <%= f.date_field :deadline, value: f.object.try(:strftime,"%Y/%m/%d"), required: true %>
+  <% end %>
   
   <div class="input-datas">
     <% if request.query_parameters["film"]=="true" %>
@@ -9,21 +15,32 @@
     <% else %>
       <%= f.text_field :tipo, id: :translation_tipo, value: "serie", type: :hidden %>
       <div class="int-datas">
-        <div class="field-label">S<%= f.number_field :stagione, autocomplete: "stagione", placeholder: 1, class: "upload-intarea", :required => true %></div>
-        <div class="field-label">E<%= f.number_field :episodio, autocomplete: "episodio", placeholder: 1, class: "upload-intarea", :required => true %></div>
+        <% if request.query_parameters["edit"].present? %>
+          <div class="field-label">S<%= f.number_field :stagione, autocomplete: "stagione", placeholder: 1, class: "upload-intarea", required: true, :readonly => true%></div>
+          <div class="field-label">E<%= f.number_field :episodio, autocomplete: "episodio", placeholder: 1, class: "upload-intarea", required: true, :readonly => true %></div>
+        <% else %>
+          <div class="field-label">S<%= f.number_field :stagione, autocomplete: "stagione", placeholder: 1, class: "upload-intarea", required: true %></div>
+          <div class="field-label">E<%= f.number_field :episodio, autocomplete: "episodio", placeholder: 1, class: "upload-intarea", required: true %></div>
+        <% end %>
       </div>
     <% end %>
 
     <div class="uploading-button">
       <label for="fileinput">
         <span>SELEZIONA FILE<br/></span>
-        <span id="fileinput-name" class="fileinput-name"><%= @translation.tradotto.filename %></span>
-      </label>
-      <% if @translation.tradotto.attached? %>
-        <%= f.file_field :tradotto, id:"fileinput", :onchange => "document.getElementById('fileinput-name').textContent=this.value.split('fakepath').pop().slice(1,)" %>
-      <% else %>
-        <%= f.file_field :tradotto, id:"fileinput", :required => true, :onchange => "document.getElementById('fileinput-name').textContent=this.value.split('fakepath').pop().slice(1,)" %>
-      <% end %>
+        <% if request.query_parameters["edit"] == "traduzione" %>
+            <span id="fileinput-name" class="fileinput-name"><%= @translation.tradotto.filename %></span>
+          </label>
+          <%= f.file_field :tradotto, id:"fileinput", :onchange => "document.getElementById('fileinput-name').textContent=this.value.split('fakepath').pop().slice(1,)" %>
+        <% elsif request.query_parameters["edit"] == "revisione" %>
+            <span id="fileinput-name" class="fileinput-name"><%= @translation.revisionato.filename %></span>
+          </label>
+          <%= f.file_field :revisionato, id:"fileinput", :required => true, :onchange => "document.getElementById('fileinput-name').textContent=this.value.split('fakepath').pop().slice(1,)" %>
+        <% else %>
+            <span id="fileinput-name" class="fileinput-name"><%= @translation.originale.filename %></span>
+          </label>
+          <%= f.file_field :originale, id:"fileinput", :onchange => "document.getElementById('fileinput-name').textContent=this.value.split('fakepath').pop().slice(1,)" %>
+        <% end %>
     </div>
 
   </div>

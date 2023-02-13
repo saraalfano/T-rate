@@ -17,6 +17,7 @@
                     <% else %>
                         <%= button_to image_tag('emptyheart.png', size: "30x30"), favorite_users_path(utente_id: utente.id), method: :post, class:"button_icon" %>
                     <% end %>
+                    <%= link_to image_tag('pencil.png', size: "30x30"), new_suggestion_path, params: {:translation => translation.id} %>
                 <% end %>
             </div>
             <hr class="classifica_sezione"><div class="elenco_sezione">

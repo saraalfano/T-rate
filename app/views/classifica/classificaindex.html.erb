@@ -17,8 +17,8 @@
                 <div class="voto_classifica"><%= utente.score %></div>
                 <div class="cmd_classifica">
                     <% if current_user.ruolo == "Project Manager" %>
-                        <%= link_to image_tag('uparrow.png', size: "30x30"), root_path %>
-                        <%= link_to image_tag('downarrow.png', size: "30x30"), root_path %>
+                        <%= button_to image_tag('uparrow.png', size: "30x30"), {:controller => "users/registrations", :action => "becomepm", :id => utente.id}, class:"classifica-upgrade" %>
+                        <%= button_to image_tag('downarrow.png', size: "30x30"), {:controller => "users/registrations", :action => "becomeuser", :id => utente.id}, class:"classifica-upgrade" %>
                     <% end %>
                     <% if current_user.ruolo == "Utente" %>
                         <% if current_user.favorite_users.exists?(id: utente.id) %>

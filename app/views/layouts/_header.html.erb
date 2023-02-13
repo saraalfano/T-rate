@@ -17,7 +17,7 @@
 
             <div class="tab"><%= link_to "BACHECA", root_path, class:"tab_span" %></div>
 
-            <% if current_user.ruolo=='Utente' || current_user.ruolo=='PM' %>
+            <% if current_user.ruolo=='Utente' || current_user.ruolo=='Traduttore' %>
                 <div class="tab"><span class="tab_span">CARICA</span></div>
             <% else %>
                 <div class="tab"><%= link_to "CARICA", new_translation_path, class:"tab_span" %></div>
@@ -28,7 +28,7 @@
             <% if current_user.ruolo=='Utente' %>
                 <div class="tab"><span class="tab_span">CALENDARIO</span></div>
             <% else %>
-                <div class="tab"><%= link_to "CALENDARIO", calendario_path, class:"tab_span" %></div>
+                <div class="tab"><%= link_to "CALENDARIO", calendar_path, class:"tab_span" %></div>
             <% end %>
         </ul>
     <% else %>
