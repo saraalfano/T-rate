@@ -3,6 +3,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
+  after_action :mail_sender, only: [:create]
 
   # GET /resource/sign_up
   # def new
@@ -87,5 +88,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
-
+  
+  #per il welcome mailer
+  def mail_sender
+  UserMailer.welcome_email(current_user.email).deliver
+  puts "AAAAAAAAAAAAAAAAAAAAAH"
+  end
 end
