@@ -3,7 +3,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
-
+  after_action :send_email, only: [:create]
   # GET /resource/sign_up
   # def new
   #   super
@@ -82,7 +82,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_sign_up_path_for(resource)
   #   super(resource)
   # end
-
+  def send_email
+    @mail=SuggestionMailer.welcome_email(params[:user][:email], params[:user][:username]).deliver_now
+    flash[:success]= "Your email has been successfully sent ;)"  if @mail
+  end
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)

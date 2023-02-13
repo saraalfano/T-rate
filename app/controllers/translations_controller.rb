@@ -197,7 +197,7 @@ class TranslationsController < ApplicationController
         token_credential_uri: 'https://accounts.google.com/o/oauth2/token',
         scope: Google::Apis::CalendarV3::AUTH_CALENDAR,
         redirect_uri: callback_url,
-        access_token:"ya29.a0AVvZVsoTT91H9B-Kj7vXA71tbiViyNAgRP3ZvtUVV6pkrEDR2_XfhdUcJt1hk3qZlVctuub82WBrn8wWfwW-WcQw9HsNLlaDdNYl07KRzRL0v8dIKRB97RBN0kaYMkmLWsGqoH5VrjdbIzsTYNozIclAiGP1aCgYKAfkSARESFQGbdwaI_namjpX8yLt21ygx3xNrdQ0163"
+        access_token:"ya29.a0AVvZVsqEQbWgZNKxnZE0un_6XPXlG24775a5jACAnKRnl6IhhP2pfZv98GoMbJ183ZkM0DH-qCYZZgtTXGA1-WgMRd-TplAHRrpYCYNo4JavfqACbi1iaC57uf3TKSCbt2Ut-MEvzOKiB12m2U0RGx1pVJDXaCgYKAQ8SARESFQGbdwaI8_kcC59-e2zMmGzhSZkT1w0163"
       }
     end
     ##############################################################################################################

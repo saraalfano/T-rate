@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   root 'welcome#index'
+  match 'postemail' => 'suggestions#create', :via=> :post
   match 'dashboardtraduttore' => 'dashboard#dashboardtraduttore', :via => :get
   match 'dashboardpm'=> 'dashboard#dashboardpm', :via => :get
   match 'dashboardutente'=> 'dashboard#dashboardutente', :via => :get
