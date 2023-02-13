@@ -97,6 +97,8 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    differ (0.1.2)
+    diffy (3.4.2)
     dotenv (2.8.1)
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
@@ -271,6 +273,7 @@ GEM
       railties (>= 5.2)
     retriable (3.1.2)
     rexml (3.2.5)
+    ruby-spellchecker (0.1.5)
     ruby-vips (2.1.4)
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
@@ -306,6 +309,7 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.6.0-x64-mingw-ucrt)
+    srt (0.1.5)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
     thor (1.2.1)
@@ -351,6 +355,8 @@ DEPENDENCIES
   cssbundling-rails (~> 1.1)
   debug
   devise
+  differ
+  diffy
   dotenv-rails
   google-api-client
   google-apis-calendar_v3
@@ -366,11 +372,13 @@ DEPENDENCIES
   omniauth-rails_csrf_protection
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.2)
+  ruby-spellchecker
   sass-rails (~> 5.0)
   selenium-webdriver
   signet
   sprockets-rails
   sqlite3 (~> 1.4)
+  srt
   stimulus-rails
   turbo-rails
   tzinfo-data

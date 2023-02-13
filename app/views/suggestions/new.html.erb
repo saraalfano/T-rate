@@ -1,9 +1,0 @@
-<div class="bigindex-upload">
-  <h2 class="page_title">SUGGERISCI UNA MODIFICA</h2>
-    <%= form_with(model: translation, class:"upload-form") do |f| %>
-        <%= f.number_field :translation, value: request.query_parameters["translation"].to_i, :required => true, type: :hidden %>
-        <%= f.text_field :corpoemail, autofocus: true, autocomplete: "Titolo", placeholder: "Titolo", :required => true %>
-        <%= f.submit "INVIA", class:"button" %>
-    <% end %>
-</div>
-

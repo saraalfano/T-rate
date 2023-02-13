@@ -19,6 +19,12 @@ gem 'image_processing'
 
 gem 'omniauth'
 
+gem 'differ'
+
+gem 'diffy'
+
+gem 'srt'
+
 gem 'google-api-client', require: 'google/apis/calendar_v3'
 
 # Use Google API for Google Calendar
@@ -31,6 +37,7 @@ gem 'omniauth-google-oauth2'
 # Use Signet for OAuth implementation
 gem 'signet'
 
+gem 'ruby-spellchecker'
 gem 'dotenv-rails'
 
 gem 'google-id-token'

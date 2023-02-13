@@ -51,10 +51,11 @@
                                         <%= image_tag('emptystar.png', size: "20x20") %>
                                     <% end %>
                                 <% end %>
-                                <% if traduzione.tipo=="serie" %>   
+                                <% if traduzione.tipo=="serie" %>
                                     <%= link_to image_tag('pencil.png', size: "20x20"), edit_translation_path(traduzione.id, params: {:edit => "traduzione", :film => false}) %>
                                 <% else %>
                                     <%= link_to image_tag('pencil.png', size: "20x20"), edit_translation_path(traduzione.id, params: {:edit => "traduzione", :film => true}) %>
+                                <%= link_to image_tag('leftarrow.png', size: "20x20"), spellcheck_path(traduzione: traduzione.id) %>
                                 
                                 <% end %>
                                 <%= link_to image_tag('download.png', size: "20x20"), traduzione.tradotto.url %>

@@ -1,7 +1,5 @@
 require 'google/api_client/client_secrets.rb'
 require 'google/apis/calendar_v3'
-require 'google/apis/drive_v3'
-require 'mygoogle/google_apis'
 require 'httparty'
 CALENDAR_ID = 'trateproject@gmail.com'
 
@@ -199,7 +197,7 @@ class TranslationsController < ApplicationController
         token_credential_uri: 'https://accounts.google.com/o/oauth2/token',
         scope: Google::Apis::CalendarV3::AUTH_CALENDAR,
         redirect_uri: callback_url,
-        access_token:"ya29.a0AVvZVsozAY0GLHOrsw0lGIUsDeFIGt1vOTDOrGCVFGGQlsfuCM9R3DFHVQwGwwqTz3iZJ3FOT7j33NG-Mmpn4PVDg2bt_0YHrBo6iwwyPVbZGxOsDUV0BlyZLYLUFLE2pB3I2Y3WIU5zwCMRTI7_aqNPaJYAaCgYKAe4SARESFQGbdwaIc05UJy8Zpc2tTxiw2HJv8A0163"
+        access_token:"ya29.a0AVvZVsoTT91H9B-Kj7vXA71tbiViyNAgRP3ZvtUVV6pkrEDR2_XfhdUcJt1hk3qZlVctuub82WBrn8wWfwW-WcQw9HsNLlaDdNYl07KRzRL0v8dIKRB97RBN0kaYMkmLWsGqoH5VrjdbIzsTYNozIclAiGP1aCgYKAfkSARESFQGbdwaI_namjpX8yLt21ygx3xNrdQ0163"
       }
     end
     ##############################################################################################################

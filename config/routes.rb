@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   resources :favorite_users, only: [:create, :destroy]
   resources :ratings, only: [:create, :destroy]
   resources :translations
-  resources :suggestions
   
   devise_scope :user do
     post '/becometranslator' => 'users/registrations#becometranslator', as: :becometranslator
@@ -16,8 +15,10 @@ Rails.application.routes.draw do
   match 'dashboardtraduttore' => 'dashboard#dashboardtraduttore', :via => :get
   match 'dashboardpm'=> 'dashboard#dashboardpm', :via => :get
   match 'dashboardutente'=> 'dashboard#dashboardutente', :via => :get
+  match 'spellcheck'=> 'dashboard#spellcheck', :via => :get
   match 'classifica'=> 'classifica#classificaindex', :via => :get
   match 'ratings' => 'rating#create', :via => :get
+  match 'suggestion'=> 'suggestions#show', :via => :get
   match 'calendar' => 'translations#index', :via => :get
   match 'traduzioni' => 'classifica#traduzioni', :via => :get
   match 'gettranslation' => 'translations#gettranslation', :via => :post

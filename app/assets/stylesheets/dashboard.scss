@@ -121,3 +121,31 @@ span.nome_ep {
     align-items: center;
 
 }
+
+.divisorio {
+    width: 80%;
+    height: 100%;
+    overflow-y: scroll;
+    display: flex;
+    gap: 10%;
+    scrollbar-width: none;
+}
+
+.subdivisorio-right{
+    width: 50%;
+    border-color: black;
+    border-left: solid;
+    border-right: solid;
+    height: max-content;
+}
+
+.subdivisorio-left {
+    width: 50%;
+    height: max-content;
+    border-color: black;
+    border-right: solid;
+}
+
+.divisorio::-webkit-scrollbar {
+    display: none;
+}

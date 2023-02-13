@@ -1,0 +1,23 @@
+<div class="index-dashboard">
+    <div class="divisorio">
+        <div class="subdivisorio-left">
+            <% file=SRT::File.parse(@originale) %>
+            <% file.lines.each do |line| %>
+                <%= line.text.join(" ") %><br/>
+            <% end %>
+        </div>
+        <div class="subdivisorio-right">
+            <% if @corretto.to_s=="[]" %>
+                NESSUNA CORREZIONE DA APPORTARE
+            <% else %>
+                <% @corretto.each do |line| %>
+                    <%= line.text %> --> <%= line.correction %> [posizione: <%= line.position %>]<br/>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+</div>
+
+<style>
+    document.getElementByClass("subdivisorio-left")
+</style>

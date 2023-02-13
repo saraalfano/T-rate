@@ -17,7 +17,6 @@
                     <% else %>
                         <%= button_to image_tag('emptyheart.png', size: "30x30"), favorite_users_path(utente_id: utente.id), method: :post, class:"button_icon" %>
                     <% end %>
-                    <%= link_to image_tag('pencil.png', size: "30x30"), new_suggestion_path, params: {:translation => translation.id} %>
                 <% end %>
             </div>
             <hr class="classifica_sezione"><div class="elenco_sezione">
@@ -47,6 +46,7 @@
                             <% end %>
 
                         <% else %>
+                            <%= link_to image_tag('pencil.png', size: "30x30"), suggestion_path(traduzione: traduzione.id) %>
                             <% if Rating.find_by(translation_id: traduzione, user_id: current_user.id) %>
                                 <% (1..Rating.find_by(translation_id: traduzione, user_id: current_user.id).voto.to_i).each do |i| %>
                                     <%= image_tag('fullstar.png', size: "20x20", class:"ratingstar_icon") %>

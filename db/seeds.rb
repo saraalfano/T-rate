@@ -14,8 +14,7 @@ user1 = User.create!(email: 'pm@trate.test',
                      nome: 'PM',
                      cognome: 'Test',
                      username: 'projman',
-                     ruolo: 'Project Manager',
-                     score: 5.5)
+                     ruolo: 'Project Manager')
 
 user2 = User.create!(email: 'traduttore@trate.test',
                      password: 'traduttorepasswordtest',
@@ -23,8 +22,7 @@ user2 = User.create!(email: 'traduttore@trate.test',
                      nome: 'Traduttore',
                      cognome: 'Test',
                      username: 'trad',
-                     ruolo: 'Traduttore',
-                     score: 3.2)
+                     ruolo: 'Traduttore')
 
 user3 = User.create!(email: 'utente@trate.test',
                      password: 'utentepasswordtest',
@@ -32,5 +30,4 @@ user3 = User.create!(email: 'utente@trate.test',
                      nome: 'Utente',
                      cognome: 'Test',
                      username: 'uten',
-                     ruolo: 'Utente',
-                     score: 0.0)
+                     ruolo: 'Utente')

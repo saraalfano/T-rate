@@ -2,15 +2,18 @@ class SuggestionsController < ApplicationController
 
 
     def create
-        @translation=Translation.find[params[:id]]
+        @traduzione=Translation.find(params[:traduzione])
         @corpo=params[:corpoemail]
-        #Fare cose
+    end
+
+    def show
+        @translation=Translation.find(params[:traduzione])
     end
 
 
     private
     # Only allow a list of trusted parameters through.
-    def translation_params
-        params.require(:suggestion).permit(:id, :corpoemail)
+    def suggestion_params
+        params.require(:suggestion).permit(:traduzione, :corpoemail)
     end
 end

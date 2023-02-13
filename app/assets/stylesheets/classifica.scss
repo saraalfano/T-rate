@@ -107,3 +107,22 @@ hr.classifica_sezione {
     font-size: 20px;
     gap: 1%;
 }
+
+.textsuggestion {
+    width: 65%;
+    height: 70%;
+    scrollbar-width: none;
+}
+
+.suggestion-form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.textsuggestion::-webkit-scrollbar {
+    display: none;
+}
