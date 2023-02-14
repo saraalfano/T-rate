@@ -252,8 +252,3 @@ end
 Then /^show me the page$/ do
   save_and_open_page
 end
-
-Given /^I am a registered user$/ do
-  @user = User.create(email: 'agnese.krelli@gmail.com', username: 'Agnese',  password: 'agnese99', password_confirmation: 'agnese99');
-  @user.save!
-end
