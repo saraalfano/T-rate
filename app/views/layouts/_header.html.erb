@@ -10,12 +10,12 @@
             <% if current_user.provider == 'google_oauth2' && current_user.avatar_url %>
                 <%= link_to image_tag(current_user.avatar_url, size: "40x40", class:"profile_pic"), edit_user_registration_path %>
             <% elsif current_user.avatar.attached? %>
-                <%= link_to image_tag(current_user.avatar, size: "40x40", class:"profile_pic"), edit_user_registration_path %>
+                <%= link_to image_tag(current_user.avatar, size: "40x40", class:"profile_pic", alt:'default_pic.png'), edit_user_registration_path %>
             <% else %>
                 <%= link_to image_tag('default_pic.png', size: "40x40", class:"profile_pic"), edit_user_registration_path %>
             <% end %>
 
-            <div class="tab"><%= link_to "BACHECA", root_path, class:"tab_span" %></div>
+            <div class="tab"><%= link_to "BACHECA", dashboard_path, class:"tab_span" %></div>
 
             <% if current_user.ruolo=='Utente' || current_user.ruolo=='Traduttore' %>
                 <div class="tab"><span class="tab_span">CARICA</span></div>

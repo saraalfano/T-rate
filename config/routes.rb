@@ -13,9 +13,7 @@ Rails.application.routes.draw do
 
   root 'welcome#index'
   match 'postemail' => 'suggestions#create', :via=> :post
-  match 'dashboardtraduttore' => 'dashboard#dashboardtraduttore', :via => :get
-  match 'dashboardpm'=> 'dashboard#dashboardpm', :via => :get
-  match 'dashboardutente'=> 'dashboard#dashboardutente', :via => :get
+  match 'dashboard' => 'dashboard#dashboard', :via => :get
   match 'spellcheck'=> 'dashboard#spellcheck', :via => :get
   match 'classifica'=> 'classifica#classificaindex', :via => :get
   match 'ratings' => 'rating#create', :via => :get

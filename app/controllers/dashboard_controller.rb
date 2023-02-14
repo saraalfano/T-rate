@@ -1,4 +1,3 @@
-require 'differ'
 class DashboardController < ApplicationController
     before_action :require_login
     before_action do
@@ -15,7 +14,6 @@ class DashboardController < ApplicationController
         traduzione=Translation.find(params[:traduzione])
         @originale=traduzione.tradotto.download.bytes.pack("c*").force_encoding("UTF-8")
         @corretto=Spellchecker.check(@originale)
-        # @correzioni = Differ.diff_by_line(@corretto, @testo)
     end
 
 end

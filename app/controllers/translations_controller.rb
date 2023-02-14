@@ -63,7 +63,7 @@ class TranslationsController < ApplicationController
     @evento=service.insert_event(CALENDAR_ID, event)
     @translation.update(:event_id => @evento.id)
     @translation.save
-    redirect_to dashboardpm_path
+    redirect_to dashboard_path
     rescue Google::Apis::AuthorizationError
       response = client.refresh!
       
@@ -76,7 +76,7 @@ class TranslationsController < ApplicationController
   def update
     respond_to do |format|
       if @translation.update(translation_params)
-        format.html { redirect_to root_path }
+        format.html { redirect_to dashboard_path }
         format.json { render :show, status: :ok, location: @translation }
       else
         format.html { render :edit, status: :unprocessable_entity }

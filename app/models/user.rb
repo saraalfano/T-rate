@@ -20,6 +20,7 @@ class User < ApplicationRecord
       user.cognome = auth.info.last_name
       user.avatar_url = auth.info.image
       user.google_token = auth.credentials.token
+      user.username = "user_"+user.id.to_s
     end
   end
 

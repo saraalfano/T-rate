@@ -31,7 +31,7 @@ class RatingController < ApplicationController
     def update
         respond_to do |format|
         if @rating.update(rating_params)
-            format.html { redirect_to dashboardtraduttore_path }
+            format.html { redirect_to dashboard_path }
             format.json { render :show, status: :ok, location: @rating }
         else
             format.html { render :edit, status: :unprocessable_entity }

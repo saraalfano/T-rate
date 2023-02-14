@@ -37,19 +37,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def becometranslator
     @user=User.find(params[:id])
     @user.update_attribute(:ruolo, "Traduttore")
-    redirect_back_or_to root_path
+    redirect_back_or_to dashboard_path
   end
 
   def becomeuser
     @user=User.find(params[:id])
     @user.update_attribute(:ruolo, "Utente")
-    redirect_back_or_to root_path
+    redirect_back_or_to dashboard_path
   end
 
   def becomepm
     @user=User.find(params[:id])
     @user.update_attribute(:ruolo, "Project Manager")
-    redirect_back_or_to root_path
+    redirect_back_or_to dashboard_path
   end
 
   # DELETE /resource
