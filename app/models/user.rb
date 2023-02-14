@@ -5,6 +5,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2]
 
+  validates :username, presence: true
   has_one_attached :avatar
   has_many :translations, :class_name => "Translation", :foreign_key => "traduttore_id"
   has_many :translations, :class_name => "Translation", :foreign_key => "revisore_id"

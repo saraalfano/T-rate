@@ -16,6 +16,9 @@ module NavigationHelpers
     when /^the home\s?page$/
       '/'
 
+    when /^the login page$/
+      '/users/sign_in'
+
     when /^the translations page$/
       '/translations/new'
 

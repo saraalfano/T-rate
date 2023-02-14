@@ -47,29 +47,34 @@ class TranslationsController < ApplicationController
   def create
     
     @translation = current_user.translations.build(translation_params)
-    client = Signet::OAuth2::Client.new(client_options)
-    client.update!(session[:authorization])
-    
-
-    service = Google::Apis::CalendarV3::CalendarService.new
-    service.authorization = client
-
-    event = Google::Apis::CalendarV3::Event.new(**{
-      start: Google::Apis::CalendarV3::EventDateTime.new(date: @translation.deadline.strftime("%Y-%m-%d")),
-      end: Google::Apis::CalendarV3::EventDateTime.new(date: (@translation.deadline+1).strftime("%Y-%m-%d")),
-      summary: @translation.titolo
-    })
-
-    @evento=service.insert_event(CALENDAR_ID, event)
-    @translation.update(:event_id => @evento.id)
-    @translation.save
-    redirect_to dashboard_path
-    rescue Google::Apis::AuthorizationError
-      response = client.refresh!
+    if @translation.originale.filename.nil?
+      redirect_to new_translation_path
+    else
+      client = Signet::OAuth2::Client.new(client_options)
+      client.update!(session[:authorization])
       
-      session[:authorization] = session[:authorization].merge(response)
 
-      retry
+      service = Google::Apis::CalendarV3::CalendarService.new
+      service.authorization = client
+
+      event = Google::Apis::CalendarV3::Event.new(**{
+        start: Google::Apis::CalendarV3::EventDateTime.new(date: @translation.deadline.strftime("%Y-%m-%d")),
+        end: Google::Apis::CalendarV3::EventDateTime.new(date: (@translation.deadline+1).strftime("%Y-%m-%d")),
+        summary: @translation.titolo
+      })
+
+      @evento=service.insert_event(CALENDAR_ID, event)
+      @translation.update(:event_id => @evento.id)
+      @translation.save
+        redirect_to dashboard_path
+    end
+
+      rescue Google::Apis::AuthorizationError
+        response = client.refresh!
+        
+        session[:authorization] = session[:authorization].merge(response)
+
+        retry
   end
 
   # PATCH/PUT /translations/1 or /translations/1.json
@@ -197,7 +202,7 @@ class TranslationsController < ApplicationController
         token_credential_uri: 'https://accounts.google.com/o/oauth2/token',
         scope: Google::Apis::CalendarV3::AUTH_CALENDAR,
         redirect_uri: callback_url,
-        access_token:"ya29.a0AVvZVsqEQbWgZNKxnZE0un_6XPXlG24775a5jACAnKRnl6IhhP2pfZv98GoMbJ183ZkM0DH-qCYZZgtTXGA1-WgMRd-TplAHRrpYCYNo4JavfqACbi1iaC57uf3TKSCbt2Ut-MEvzOKiB12m2U0RGx1pVJDXaCgYKAQ8SARESFQGbdwaI8_kcC59-e2zMmGzhSZkT1w0163"
+        access_token:"ya29.a0AVvZVsqCaw39UAjePBXuKkdeHoPpZqmdP0-JY7CdNa4s--w5EiyH6YQ7M3dFtAtCVs1EFn-3-rlFR8EcaFCQRaii2xk_WPKQRr0Xze5RETfzQ_ozE6yn-_cETkf2YaVYbwJvlhlMOlcDcWLTOgE-7y3mVaajaCgYKAYoSARESFQGbdwaIwky81rbC5-zDpC9KRKgBvQ0163"
       }
     end
     ##############################################################################################################

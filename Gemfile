@@ -81,6 +81,12 @@ gem "bootsnap", require: false
 
 gem "devise"
 
+gem 'rspec'
+gem 'rspec-rails'
+gem 'factory_bot_rails'
+gem 'rails-controller-testing'
+gem 'faker'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -91,6 +97,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'cucumber-rails-training-wheels'
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails'
 end
 
 group :development do

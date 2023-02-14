@@ -1,6 +1,6 @@
 Feature: login
 
-Scenario: Success Login
+Scenario: Login:success
 	  Given I am on the home page
       And I am a registered user
       When I follow "ACCEDI"

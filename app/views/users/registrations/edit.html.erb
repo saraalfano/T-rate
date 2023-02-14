@@ -19,9 +19,9 @@
       <%= f.file_field :avatar %>
 
       <br/><br/>
-      <%= f.text_field :username, autocomplete: "username", placeholder: "Username", class:"field-account" %>
+      <%= f.text_field :username, autocomplete: "username", placeholder: "Username", class:"field-account", required: true %>
       <br/><br/>
-      <%= f.email_field :email, autocomplete: "email", class:"field-account" %>
+      <%= f.email_field :email, autocomplete: "email", class:"field-account", required: true %>
       <br/><br/>
       <%= f.text_field :nome, autocomplete: "nome", placeholder: "Nome", class:"field-account" %>
       <%= f.text_field :cognome, autocomplete: "cognome", placeholder: "Cognome", class:"field-account" %>

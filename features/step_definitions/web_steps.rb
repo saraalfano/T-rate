@@ -65,6 +65,10 @@ When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|
   fill_in(field, :with => value)
 end
 
+When /^I upload a file with valid data$/ do
+  attach_file("file", File.join('.', 'features', 'upload_files', 'All.American.S05E11.srt'))
+end
+
 # Use this to fill in an entire form with data from a table. Example:
 #
 #   When I fill in the following:

@@ -81,7 +81,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_09_185409) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "username", null: false
+    t.string "username"
     t.string "nome"
     t.string "cognome"
     t.string "ruolo", default: "Utente"
