@@ -252,3 +252,14 @@ end
 Then /^show me the page$/ do
   save_and_open_page
 end
+
+Given /^I am a registered user$/ do
+  @user = User.create(email: 'utente@trate.test', username: 'user',  password: 'utentepasswordtest', password_confirmation: 'utentepasswordtest');
+  @user.save!
+end
+
+Given /^I am a PM$/ do 
+  @user = User.create(email: 'pm@trate.test', username: 'PM',  password: 'pmpasswordtest', password_confirmation: 'pmpasswordtest');
+  @user.ruolo="Project Manager"
+  @user.save!
+end

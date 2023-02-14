@@ -5,7 +5,7 @@ Scenario: Success Login
       And I am a registered user
       When I follow "ACCEDI"
       Then I should be on the login page
-      When I fill in "Email" with "agnese.krelli@gmail.com"
-      And I fill in "Password" with "agnese"
-      And I press "Log In"
+      When I fill in "Email" with "utente@trate.test"
+      And I fill in "Password" with "utentepasswordtest"
+      And I press "LOG IN"
       Then I should be on the dashboard page
