@@ -1,0 +1,38 @@
+<head>
+<%= stylesheet_link_tag "application", media: "all", "data-turbo-track" => "reload" %>
+<%= javascript_include_tag "application", "data-turbo-track" => "reload" %>
+</head>
+
+<div class="logo"><%= image_tag('logo.png', size: "200x200") %></div>
+
+    <% if current_user %>
+        <ul class="tabs">
+            <% if current_user.provider == 'google_oauth2' && current_user.avatar_url %>
+                <%= link_to image_tag(current_user.avatar_url, size: "40x40", class:"profile_pic"), edit_user_registration_path %>
+            <% elsif current_user.avatar.attached? %>
+                <%= link_to image_tag(current_user.avatar, size: "40x40", class:"profile_pic", alt:'default_pic.png'), edit_user_registration_path %>
+            <% else %>
+                <%= link_to image_tag('default_pic.png', size: "40x40", class:"profile_pic"), edit_user_registration_path %>
+            <% end %>
+
+            <div class="tab"><%= link_to "BACHECA", dashboard_path, class:"tab_span" %></div>
+
+            <% if current_user.ruolo=='Utente' || current_user.ruolo=='Traduttore' %>
+                <div class="tab"><span class="tab_span">CARICA</span></div>
+            <% else %>
+                <div class="tab"><%= link_to "CARICA", new_translation_path, class:"tab_span" %></div>
+            <% end %>
+
+            <div class="tab"><%= link_to "CLASSIFICA", classifica_path, class:"tab_span" %></div>
+
+            <% if current_user.ruolo=='Utente' %>
+                <div class="tab"><span class="tab_span">CALENDARIO</span></div>
+            <% else %>
+                <div class="tab"><%= link_to "CALENDARIO", calendar_path, class:"tab_span" %></div>
+            <% end %>
+        </ul>
+    <% else %>
+        <ul class="tabs">   
+            <div class="tab"><%= link_to "HOME", root_path, class:"tab_span" %></div>
+        </ul>
+    <% end %>

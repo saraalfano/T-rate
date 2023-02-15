@@ -1,0 +1,34 @@
+<div class="index-classifica">
+    <div class="classifica">
+        <% User.order(score: :desc).where(ruolo: "Traduttore").each_with_index do |utente, index| %>
+            <div class="voce_classifica">
+                <div class="numero_classifica"><%= index+1 %></div>
+                <div class="nome_classifica">
+                    <% if utente.provider == 'google_oauth2' && utente.avatar_url %>
+                        <%= image_tag(utente.avatar_url, size: "50x50", class:"profile_pic") %>
+                    <% elsif utente.avatar.attached? %>
+                        <%= image_tag(utente.avatar, size: "50x50", class:"profile_pic") %>
+                    <% else %>
+                        <%= image_tag('default_pic.png', size: "50x50", class:"profile_pic") %>
+                    <% end %>
+
+                    <%= button_to utente.username, traduzioni_path, params: {:traduttore => utente.username}, method: :get, class:"classifica-button" %>
+                </div>
+                <div class="voto_classifica"><%= utente.score %></div>
+                <div class="cmd_classifica">
+                    <% if current_user.ruolo == "Project Manager" %>
+                        <%= button_to image_tag('uparrow.png', size: "30x30"), {:controller => "users/registrations", :action => "becomepm", :id => utente.id}, class:"classifica-upgrade" %>
+                        <%= button_to image_tag('downarrow.png', size: "30x30"), {:controller => "users/registrations", :action => "becomeuser", :id => utente.id}, class:"classifica-upgrade" %>
+                    <% end %>
+                    <% if current_user.ruolo == "Utente" %>
+                        <% if current_user.favorite_users.exists?(id: utente.id) %>
+                            <%= button_to image_tag('fullheart.png', size: "30x30"), favorite_user_path(utente), method: :delete, class:"button_icon" %>
+                        <% else %>
+                            <%= button_to image_tag('emptyheart.png', size: "30x30"), favorite_users_path(utente_id: utente.id), method: :post, class:"button_icon" %>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>

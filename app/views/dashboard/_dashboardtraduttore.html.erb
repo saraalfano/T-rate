@@ -1,0 +1,70 @@
+<div class="index-dashboard">
+    <div class="big-sezione">
+        <div class="sezione">
+            <div class="titolo_sezione">
+                <span class="titolo_sezione">DA SVOLGERE</span><hr class="titolo_sezione"><div class="elenco_sezione">
+                    <% Translation.where(traduttore_id: current_user.id).order(created_at: :desc).each do |traduzione| %>
+                        <% if !traduzione.tradotto.attached? %>
+                            <div class="voce_es">
+                                <div class="titolo_ves"><%= traduzione.titolo %>
+                                    <% if traduzione.tipo=="serie" %>   
+                                        <% if traduzione.stagione.to_i < 10 %> (S0<% else %> (S<% end %><%= traduzione.stagione%><% if traduzione.episodio.to_i < 10 %>E0<% else %>E<% end %><%= traduzione.episodio%>)
+                                    <% end %>
+                                </div>
+                                <div class="scadenza_ves">
+                                    <span class="scadenza_ves">Scadenza: <%= traduzione.deadline.strftime("%d/%m/%Y") %></span>
+                                    <% if traduzione.tipo=="serie" %>   
+                                        <%= link_to image_tag('upload.png', size: "20x20"), edit_translation_path(traduzione.id, params: {:edit => "traduzione", :film => false}) %>
+                                    <% else %>
+                                        <%= link_to image_tag('upload.png', size: "20x20"), edit_translation_path(traduzione.id, params: {:edit => "traduzione", :film => true}) %>
+                                    <% end %>
+                                    <%= link_to image_tag('download.png', size: "20x20"), traduzione.originale.url %>
+                                </div>
+                            </div>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="sezione">
+            <div class="titolo_sezione">
+                <span class="titolo_sezione">SVOLTE</span><hr class="titolo_sezione"><div class="elenco_sezione">
+                <% Translation.where(traduttore_id: current_user.id).order(created_at: :desc).each do |traduzione| %>
+                    <% if traduzione.tradotto.attached? %>
+                        <div class="voce_es">
+                            <div class="titolo_ves"><%= traduzione.titolo %>
+                                <% if traduzione.tipo=="serie" %>   
+                                    <% if traduzione.stagione.to_i < 10 %> (S0<% else %> (S<% end %><%= traduzione.stagione%><% if traduzione.episodio.to_i < 10 %>E0<% else %>E<% end %><%= traduzione.episodio%>)
+                                <% end %>
+                            </div>
+                            <div class="rating_ves">
+                                <% if Rating.find_by(translation_id: traduzione) %>
+                                    <% (1..Rating.where(translation_id: traduzione).average(:voto).to_i).each do |i| %>
+                                        <%= image_tag('fullstar.png', size: "20x20", class:"ratingstar_icon") %>
+                                    <% end %>
+                                    <% (Rating.where(translation_id: traduzione).average(:voto).to_i+1..10).each do |i| %>
+                                        <%= image_tag('emptystar.png', size: "20x20", class:"ratingstar_icon") %>
+                                    <% end %>
+                                <% else %>
+                                    <% for i in 1..10 do %>
+                                        <%= image_tag('emptystar.png', size: "20x20") %>
+                                    <% end %>
+                                <% end %>
+                                <% if traduzione.tipo=="serie" %>
+                                    <%= link_to image_tag('pencil.png', size: "20x20"), edit_translation_path(traduzione.id, params: {:edit => "traduzione", :film => false}) %>
+                                <% else %>
+                                    <%= link_to image_tag('pencil.png', size: "20x20"), edit_translation_path(traduzione.id, params: {:edit => "traduzione", :film => true}) %>
+                                <%= link_to image_tag('spellcheck.png', size: "20x20"), spellcheck_path(traduzione: traduzione.id) %>
+                                
+                                <% end %>
+                                <%= link_to image_tag('download.png', size: "20x20"), traduzione.tradotto.url %>
+                            </div>
+                        </div>
+                    <% end %>
+                <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

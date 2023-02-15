@@ -1,0 +1,7 @@
+<% if current_user.ruolo=="Project Manager" %>
+    <%= render "dashboard/dashboardpm" %>
+<% elsif current_user.ruolo=="Traduttore" %>
+    <%= render "dashboard/dashboardtraduttore" %>
+<% else current_user.ruolo=="Utente" %>
+    <%= render "dashboard/dashboardutente" %>
+<% end %>

@@ -1,0 +1,9 @@
+<div class="bigindex-upload">
+  <h2 class="page_title">SUGGERISCI UNA MODIFICA</h2>
+    <%= form_with(url: postemail_path, class:"suggestion-form") do |f| %>
+        <%= f.number_field :traduzione, value: @translation.id, :required => true, type: :hidden %>
+        <%= f.text_area :corpoemail, autofocus: true, autocomplete: "Inserisci qui la recensione", placeholder: "Corpo", :required => true, class: "textsuggestion" %>
+        <%= f.submit "INVIA", class:"button" %>
+    <% end %>
+</div>
+

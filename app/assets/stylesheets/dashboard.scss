@@ -1,0 +1,151 @@
+.index-dashboard {
+    width: 80%;
+    height: 500px;
+    margin: auto;
+    border-color: black;
+    border-style: solid;
+    border-top-right-radius: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding-left: 20px;
+    font-size: 100%;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.index-dashboard::-webkit-scrollbar {
+    display: none;
+}
+
+.big-sezione {
+    width: 800px;
+    height: 100%;
+}
+
+.sezione {
+    width: 800px;
+}
+
+.titolo_sezione {
+    text-align: left;
+}
+
+span.titolo_sezione {
+    font-weight: bold;
+    text-align: left;
+    font-size: 200%;
+    margin-left: 10px;
+}
+
+hr.titolo_sezione {
+    border: 3px solid black;
+    opacity: 100%;
+    margin: 0;
+}
+
+.elenco_sezione {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.voce_es {
+    height: 60px;
+    border-color: black;
+    border-style: solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 150%;
+}
+
+.titolo_ves {
+    margin-left:5px;
+    font-weight: bold;
+
+}
+
+.scadenza_ves {
+    margin-right:5px;
+
+}
+
+.elenco_preferiti {
+    margin-top: 10px;
+    border-color: black;
+    border-style: solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.nome_ep {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+span.nome_ep {
+    width: auto;
+    font-size: 150%;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.voce_ep {
+    width: 95%;
+    height: 60px;
+    border-color: black;
+    border-style: solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 150%;
+    margin-bottom: 10px;
+}
+
+.titolo_vep {
+    width: 380px;
+    line-break: normal;
+    line-height: 80%;
+    margin-left: 5px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+
+}
+
+.divisorio {
+    width: 80%;
+    height: 100%;
+    overflow-y: scroll;
+    display: flex;
+    gap: 10%;
+    scrollbar-width: none;
+}
+
+.subdivisorio-right{
+    width: 50%;
+    border-color: black;
+    border-left: solid;
+    border-right: solid;
+    height: max-content;
+}
+
+.subdivisorio-left {
+    width: 50%;
+    height: max-content;
+    border-color: black;
+    border-right: solid;
+}
+
+.divisorio::-webkit-scrollbar {
+    display: none;
+}
