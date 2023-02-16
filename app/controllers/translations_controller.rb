@@ -56,13 +56,6 @@ class TranslationsController < ApplicationController
       @translation.save
         redirect_to dashboard_path
     end
-
-      rescue Google::Apis::AuthorizationError
-        response = client.refresh!
-        
-        session[:authorization] = session[:authorization].merge(response)
-
-        retry
   end
 
   # PATCH/PUT /translations/1 or /translations/1.json
@@ -87,10 +80,6 @@ class TranslationsController < ApplicationController
     service.delete_event(CALENDAR_ID, @translation.event_id)
     @translation.destroy
     redirect_back_or_to '/classifica', allow_other_host: false
-  rescue Google::Apis::ClientError
-    @translation.destroy
-    redirect_back_or_to '/classifica', allow_other_host: false
-    retry
 
   end
 
