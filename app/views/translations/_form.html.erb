@@ -6,7 +6,7 @@
   <% else %>
     <%= f.number_field :revisore_id, value: current_user.id, type: :hidden %>
     <%= f.text_field :titolo, autofocus: true, autocomplete: "Titolo", placeholder: "Titolo", class: "upload-fieldarea", :required => true %>
-    <%= f.date_field :deadline, placeholder: "gg/mm/aaaa", value: f.object.try(:strftime,"%Y/%m/%d"), required: true %>
+    <%= f.date_field :deadline, value: f.object.try(:strftime,"%Y/%m/%d"), required: true %>
   <% end %>
   
   <div class="input-datas">

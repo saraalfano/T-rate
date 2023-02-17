@@ -6,8 +6,8 @@ class Translation < ApplicationRecord
   has_one_attached :revisionato
   validates :titolo, presence: true
   validates :deadline, presence: true
-  validates :stagione, presence: true, if: :tipo=="serie"
-  validates :episodio, presence: true, if: :tipo=="serie"
+  validates :stagione, presence: true, if: :serie_check
+  validates :episodio, presence: true, if: :serie_check
   validates :originale, presence: true
 
   before_destroy :destroy_ratings
@@ -18,4 +18,7 @@ class Translation < ApplicationRecord
       self.ratings.destroy_all
     end
 
+    def serie_check
+      tipo=="serie"
+    end
 end

@@ -53,8 +53,11 @@ class TranslationsController < ApplicationController
 
       @evento=service.insert_event(CALENDAR_ID, event)
       @translation.update(:event_id => @evento.id)
-      @translation.save
-        redirect_to dashboard_path
+      puts @translation.tipo
+      if @translation.save!
+        puts "FATTO!"
+      end
+      redirect_to dashboard_path
     end
   end
 

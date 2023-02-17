@@ -8,26 +8,18 @@
 
 User.delete_all
 
-user1 = User.create!(email: 'pm@trate.test',
-                     password: 'pmpasswordtest',
-                     password_confirmation: 'pmpasswordtest',
-                     nome: 'PM',
-                     cognome: 'Test',
-                     username: 'projman',
-                     ruolo: 'Project Manager')
-
-user2 = User.create!(email: 'traduttore@trate.test',
-                     password: 'traduttorepasswordtest',
-                     password_confirmation: 'traduttorepasswordtest',
-                     nome: 'Traduttore',
-                     cognome: 'Test',
-                     username: 'trad',
+user2 = User.create!(email: 'capparelli.1794326@studenti.uniroma1.it',
+                     password: 'passwordtest',
+                     password_confirmation: 'passwordtest',
+                     nome: 'Agnese',
+                     cognome: 'Capparelli',
+                     username: 'Agnese:)',
                      ruolo: 'Traduttore')
 
-user3 = User.create!(email: 'utente@trate.test',
-                     password: 'utentepasswordtest',
-                     password_confirmation: 'utentepasswordtest',
-                     nome: 'Utente',
-                     cognome: 'Test',
-                     username: 'uten',
-                     ruolo: 'Utente')
+user3 = User.create!(email: 'orlandi.1847682@studenti.uniroma1.it',
+                     password: 'passwordtest',
+                     password_confirmation: 'passwordtest',
+                     nome: 'Andrea',
+                     cognome: 'Orlandi',
+                     username: 'Swerd',
+                     ruolo: 'Project Manager')
