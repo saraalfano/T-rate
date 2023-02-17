@@ -1,0 +1,83 @@
+<div class="index-dashboard">
+    <div class="big-sezione">
+        <div class="classifica_sezione">
+            <div class="classifica_nome">
+                <% utente=User.find_by(username: request.query_parameters["traduttore"]) %>
+                <% if utente.provider == 'google_oauth2' && utente.avatar_url %>
+                    <%= image_tag(utente.avatar_url, size: "40x40", class:"profile_pic") %>
+                <% elsif utente.avatar.attached? %>
+                    <%= image_tag(utente.avatar, size: "40x40", class:"profile_pic") %>
+                <% else %>
+                    <%= image_tag('default_pic.png', size: "40x40", class:"profile_pic") %>
+                <% end %>
+                <%= utente.username %>
+                <% if current_user.ruolo == "Utente" %>
+                    <% if current_user.favorite_users.exists?(id: utente.id) %>
+                        <%= button_to image_tag('fullheart.png', size: "30x30"), favorite_user_path(utente), method: :delete, class:"button_icon" %>
+                    <% else %>
+                        <%= button_to image_tag('emptyheart.png', size: "30x30"), favorite_users_path(utente_id: utente.id), method: :post, class:"button_icon" %>
+                    <% end %>
+                <% end %>
+            </div>
+            <hr class="classifica_sezione"><div class="elenco_sezione">
+            <% Translation.where(traduttore_id: utente.id).order(created_at: :desc).each do |traduzione| %>
+                <div class="voce_es">
+                    <div class="titolo_ves"><%= traduzione.titolo %>
+                        <% if traduzione.tipo=="serie" %>   
+                            <% if traduzione.stagione.to_i < 10 %> (S0<% else %> (S<% end %><%= traduzione.stagione%><% if traduzione.episodio.to_i < 10 %>E0<% else %>E<% end %><%= traduzione.episodio%>)
+                        <% end %>
+                    </div>
+                    <div class="rating_ves">
+                        <% if (current_user.ruolo=="Project Manager" || utente==current_user) %>
+                            <% if Rating.find_by(translation_id: traduzione) %>
+                                <% (1..Rating.where(translation_id: traduzione).average(:voto).to_i).each do |i| %>
+                                    <%= image_tag('fullstar.png', size: "20x20", class:"ratingstar_icon") %>
+                                <% end %>
+                                <% (Rating.where(translation_id: traduzione).average(:voto).to_i+1..10).each do |i| %>
+                                    <%= image_tag('emptystar.png', size: "20x20", class:"ratingstar_icon") %>
+                                <% end %>
+                            <% else %>
+                                <% for i in 1..10 do %>
+                                    <%= image_tag('emptystar.png', size: "20x20") %>
+                                <% end %>
+                            <% end %>
+                            <% if current_user.ruolo=="Project Manager" %>
+                                <%= button_to image_tag('delete.png', size: "20x20"), {:controller => :translations, :action => 'destroy', :id => traduzione.id }, :method => :delete, class:"ratingstar_icon" %>
+                            <% end %>
+
+                        <% else %>
+                            <%= link_to image_tag('pencil.png', size: "30x30"), suggestion_path(traduzione: traduzione.id) %>
+                            <% if Rating.find_by(translation_id: traduzione, user_id: current_user.id) %>
+                                <% (1..Rating.find_by(translation_id: traduzione, user_id: current_user.id).voto.to_i).each do |i| %>
+                                    <%= image_tag('fullstar.png', size: "20x20", class:"ratingstar_icon") %>
+                                <% end %>
+                                <% (Rating.find_by(translation_id: traduzione, user_id: current_user.id).voto.to_i+1..10).each do |i| %>
+                                    <%= image_tag('emptystar.png', size: "20x20", class:"ratingstar_icon") %>
+                                <% end %>
+                            <% else %>
+                                <% (1..10).each do |i| %>
+                                    <%=link_to image_tag('emptystar.png', size: "20x20", class:"ratingstar_icon", id:"ratingstar_#{traduzione.id}_#{i}", onmouseover: "ratingover(#{traduzione.id}, #{i});", onmouseout: "ratingout(#{traduzione.id}, #{i});"), {:controller => "rating", :action => "create", :voto => i, :translation => traduzione } %>
+                                <% end %>
+                            <% end %>
+                        <% end %>
+                        <%= link_to image_tag('download.png', size: "20x20"), traduzione.tradotto.url %>                     
+                    </div>
+                </div>
+            <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function ratingover(trad, starnum) {
+        for (let i=1; i<=starnum; i++)
+            document.getElementById("ratingstar_"+trad.toString()+"_"+i.toString()).src= "/assets/fullstar.png";
+    }
+
+    function ratingout(trad, starnum) {
+        for (let i=1; i<=starnum; i++)
+            document.getElementById("ratingstar_"+trad.toString()+"_"+i.toString()).src= "/assets/emptystar.png";
+    }
+
+</script>

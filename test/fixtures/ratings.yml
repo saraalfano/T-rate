@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  voto: 1.5
+  translation: one
+  user: one
+
+two:
+  voto: 1.5
+  translation: two
+  user: two

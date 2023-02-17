@@ -1,0 +1,20 @@
+<div class="bigindex-upload">
+  <h2 class="page_title">MODIFICA UNA PARTE</h2>
+  <div class="index-upload">
+      <div class="upload_header_buttons">
+        <% if request.query_parameters["film"]=="true" %>
+          <%= button_to "SERIE TV", edit_translation_path(@translation), method: :get, class:"upload_header_button" %>
+          <%= button_tag "FILM", class:"upload_header_button_selected" %>
+        <% else %>
+          <%= button_tag "SERIE TV", class:"upload_header_button_selected" %>
+          <%= button_to "FILM", edit_translation_path(@translation), params: {:film => true}, method: :get, class:"upload_header_button" %>
+        <% end %>
+      </div>
+      <% if defined?(film) %>
+        <%= render "form", translation: @translation %>
+      <% else %>
+        <%= render "form", translation: @translation %>
+      <% end %>
+  </div>
+</div>
+

@@ -1,0 +1,99 @@
+<div class="calendario-index">
+  <% if request.query_parameters["anno"].present? %>
+    <% @anno=request.query_parameters["anno"].to_i %>
+  <% else %>
+    <% @anno=Time.now.year %>
+  <% end %>
+  <% if request.query_parameters["mese"].present? %>
+    <% @mese=request.query_parameters["mese"].to_i %>
+  <% else %>
+    <% @mese=Time.now.month %>
+  <% end %>
+  <div class="calendario-comandi">
+      <% if @mese!=1 %>
+        <%= button_to image_tag('leftarrow.png', size: "60x60"), calendar_path, params: {:mese => @mese-1}, method: :get, class:"calendario-freccia" %>
+      <% else %>
+        <%= button_to image_tag('leftarrow.png', size: "60x60"), calendar_path, params: {:mese => 12, :anno => @anno-1}, method: :get, class:"calendario-freccia" %>
+      <% end %>
+
+      <% if @mese==1 %> <% @nomemese="gennaio" %> <% elsif @mese==2 %> <% @nomemese="febbraio" %> <% elsif @mese==3 %> <% @nomemese="marzo" %> <% elsif @mese==4 %> <% @nomemese="aprile" %> <% elsif @mese==5 %> <% @nomemese="maggio" %> <% elsif @mese==6 %> <% @nomemese="giugno" %> <% elsif @mese==7 %> <% @nomemese="luglio" %> <% elsif @mese==8 %> <% @nomemese="agosto" %> <% elsif @mese==9 %> <% @nomemese="settembre" %> <% elsif @mese==10 %> <% @nomemese="ottobre" %> <% elsif @mese==11 %> <% @nomemese="novembre" %> <% elsif @mese==12 %> <% @nomemese="dicembre" %> <% end %>
+      <div class="calendario-label"><div class="calendario-mese"><%= @nomemese %></div><div class="calendario-anno"><%= @anno %></div></div>
+      
+      <% if @mese!=12 %>
+        <%= button_to image_tag('rightarrow.png', size: "60x60"), calendar_path, params: {:mese => @mese+1}, method: :get, class:"calendario-freccia" %>
+      <% else %>
+        <%= button_to image_tag('rightarrow.png', size: "60x60"), calendar_path, params: {:mese => 1, :anno => @anno+1}, method: :get, class:"calendario-freccia" %>
+      <% end %>
+  </div>
+  <div class="calendario">
+    <table id="mytable">
+      <tr>
+        <th>Lunedì</th>
+        <th>Martedì</th>
+        <th>Mercoledì</th>
+        <th>Giovedì</th>
+        <th>Venerdì</th>
+        <th>Sabato</th>
+        <th>Domenica</th>
+      </tr>
+      <% @giorni=Time.days_in_month(@mese, @anno) %>
+      <% @day=Time.new(@anno, @mese, 1).wday %>
+      <% if @day==0 %><% @blanks=6 %><% else %><% @blanks=@day-1 %><% end %>
+      <% @row_number=(@giorni+@blanks)/7 %><% if (@giorni+@blanks)%7 != 0 %><% @row_number+=1 %><% end %>
+      <% @data=Time.new(@anno, @mese, 1)%>
+      <tr>
+        <% for i in 1..@blanks do %>
+          <td></td>
+        <% end %>
+        <% for i in 1..7-@blanks do %>
+          <td><%= i %>
+            <% Translation.where(deadline: @data.strftime("%Y-%m-%d")).each do |traduzione| %>
+              <div class="cell-items">
+                <% if current_user.ruolo=="Traduttore" && traduzione.got == false %>
+                  <%= button_to image_tag('greybutton', size:"20x20"), {:action => "gettranslation", :traduzione => traduzione.id, :utente => current_user.id}, class:"calendario-button" %>
+                <% elsif current_user.ruolo=="Traduttore" && traduzione.got == true %>
+                  <%= image_tag('redbutton', size:"20x20", class:"calendario-button") %>
+                <% elsif current_user.ruolo=="Project Manager" && traduzione.got == false %>
+                  <%= button_to image_tag('delete', size:"20x20"), {:controller => :translations, :action => 'destroy', :id => traduzione.id }, :method => :delete, class:"calendario-button" %>
+                <% elsif current_user.ruolo=="Project Manager" && traduzione.got == true %>
+                  <%= button_to image_tag('reddelete', size:"20x20"), {:controller => :translations, :action => 'destroy', :id => traduzione.id }, :method => :delete, class:"calendario-button" %>
+                <% end %><%= traduzione.titolo %>
+                <% if traduzione.tipo == "serie" %>
+                  <% if traduzione.stagione.to_i < 10 %> (S0<% else %> (S<% end %><%= traduzione.stagione%><% if traduzione.episodio.to_i < 10 %>E0<% else %>E<% end %><%= traduzione.episodio%>)
+                <% end %>
+              </div>
+            <% end %>
+            <% @data = @data+1.days %></td>
+        <% end %>
+      </tr>
+      <% for i in 1..@row_number-1 do %>
+        <tr>
+          <% for j in 0..6 do %>
+            <% if 7*i+j-@blanks+1<=@giorni %>
+              <td><%= 7*i+j-@blanks+1 %>
+                  <% Translation.where(deadline: @data.strftime("%Y-%m-%d")).each do |traduzione| %>
+                    <div class="cell-items">
+                        <% if current_user.ruolo=="Traduttore" && traduzione.got == false %>
+                          <%= button_to image_tag('greybutton', size:"20x20"), {:action => "gettranslation", :traduzione => traduzione.id, :utente => current_user.id}, class:"calendario-button" %>
+                        <% elsif current_user.ruolo=="Traduttore" && traduzione.got == true %>
+                          <%= image_tag('redbutton', size:"20x20", class:"calendario-button") %>
+                        <% elsif current_user.ruolo=="Project Manager" && traduzione.got == false %>
+                          <%= button_to image_tag('delete', size:"20x20"), {:controller => :translations, :action => 'destroy', :id => traduzione.id }, :method => :delete, class:"calendario-button" %>
+                        <% elsif current_user.ruolo=="Project Manager" && traduzione.got == true %>
+                          <%= button_to image_tag('reddelete', size:"20x20"), {:controller => :translations, :action => 'destroy', :id => traduzione.id }, :method => :delete, class:"calendario-button" %>
+                        <% end %><%= traduzione.titolo %>
+                      <% if traduzione.tipo == "serie" %>
+                        <% if traduzione.stagione.to_i < 10 %> (S0<% else %> (S<% end %><%= traduzione.stagione%><% if traduzione.episodio.to_i < 10 %>E0<% else %>E<% end %><%= traduzione.episodio%>)
+                      <% end %>
+                    </div>
+                  <% end %>
+                  <% @data = @data+1.days %></td>
+            <% else %>
+              <td></td>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

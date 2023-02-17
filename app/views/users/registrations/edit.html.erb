@@ -1,0 +1,57 @@
+<div class="index-account">
+
+    <div class="buttons-footer-account">
+      <%= button_to "ELIMINA ACCOUNT", registration_path(resource_name), data: { confirm: "SICURO DI VOLER ELIMINARE L'ACCOUNT?" }, method: :delete, class:"button-footer-account" %>
+    </div>
+
+  <div class="edit-account">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+              
+      <% if current_user.provider == 'google_oauth2' && current_user.avatar_url %>
+        <%= image_tag(current_user.avatar_url, size: "80x80", class:"profile_pic") %><br />
+      <% elsif current_user.avatar.attached? %>
+        <%= image_tag(current_user.avatar, size: "80x80", class:"profile_pic") %>
+      <% else %>
+        <%= image_tag('default_pic.png', size: "80x80", class:"profile_pic") %>
+      <% end %>
+
+      <br/>
+      <%= f.file_field :avatar %>
+
+      <br/><br/>
+      <%= f.text_field :username, autocomplete: "username", placeholder: "Username", class:"field-account", required: true %>
+      <br/><br/>
+      <%= f.email_field :email, autocomplete: "email", class:"field-account", required: true %>
+      <br/><br/>
+      <%= f.text_field :nome, autocomplete: "nome", placeholder: "Nome", class:"field-account" %>
+      <%= f.text_field :cognome, autocomplete: "cognome", placeholder: "Cognome", class:"field-account" %>
+
+      <br/><br/>
+
+      <b>RUOLO:</b>
+      <br/>
+      <%= current_user.ruolo %>
+
+      <br/><br/>
+      <div class="buttons-account">
+        <%= f.submit "UPDATE", class:"button-account" %>
+    <% end %>
+        <% if current_user.ruolo=="Utente" %>
+          <%= button_to "DIVENTA TRADUTTORE", {:action => 'becometranslator', :id => current_user.id}, class:"button-account" %>
+        <% elsif current_user.ruolo=="Traduttore" %>
+          <%= button_to "TORNA A UTENTE", {:action => 'becomeuser', :id => current_user.id}, class:"button-account" %>
+          <% if current_user.score.round(1) > 8 %>
+            <%= button_to "DIVENTA PM", {:action => 'becomepm', :id => current_user.id}, class:"button-account" %>
+          <% end %>
+        <% elsif current_user.ruolo=="Project Manager" %>
+          <%= button_to "TORNA A UTENTE", {:action => 'becomeuser', :id => current_user.id}, class:"button-account" %>
+          <%= button_to "TORNA A TRADUTTORE", {:action => 'becometranslator', :id => current_user.id}, class:"button-account" %>
+        <% end %>
+      </div>
+
+      
+  </div>
+
+</div>
+<%= render "users/shared/error_messages", resource: resource %>
+
